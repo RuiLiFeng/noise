@@ -168,7 +168,7 @@ def main():
     parser.add_argument('--total-kimg', help='Training length in thousands of images (default: %(default)s)', metavar='KIMG', default=25000, type=int)
     parser.add_argument('--gamma', help='R1 regularization weight (default is config dependent)', default=None, type=float)
     parser.add_argument('--mirror-augment', help='Mirror augment (default: %(default)s)', default=False, metavar='BOOL', type=_str_to_bool)
-    parser.add_argument('--metrics', help='Comma-separated list of metrics or "none" (default: %(default)s)', default='fid50k,ppl_wend,ls', type=_parse_comma_sep)
+    parser.add_argument('--metrics', help='Comma-separated list of metrics or "none" (default: %(default)s)', default='fid50k,ppl_wend', type=_parse_comma_sep)
     parser.add_argument('--max-images', help='Total num of imgs used, use all if "none" (default: %(default)s)', default=None, type=int)
 
     args = parser.parse_args()
