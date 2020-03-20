@@ -33,10 +33,10 @@ _valid_configs = [
 
 #----------------------------------------------------------------------------
 
-def run(dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, mirror_augment, metrics, max_images):
+def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, mirror_augment, metrics, max_images):
     train     = EasyDict(run_func_name='training.training_loop.training_loop') # Options for training loop.
-    G         = EasyDict(func_name='training.networks_stylegan2.G_main')       # Options for generator network.
-    D         = EasyDict(func_name='training.networks_stylegan2.D_stylegan2')  # Options for discriminator network.
+    G         = EasyDict(func_name='training.' + model + '.G_main')       # Options for generator network.
+    D         = EasyDict(func_name='training.' + model + '.D_stylegan2')  # Options for discriminator network.
     G_opt     = EasyDict(beta1=0.0, beta2=0.99, epsilon=1e-8)                  # Options for generator optimizer.
     D_opt     = EasyDict(beta1=0.0, beta2=0.99, epsilon=1e-8)                  # Options for discriminator optimizer.
     G_loss    = EasyDict(func_name='training.loss.G_logistic_ns_pathreg')      # Options for generator loss.
@@ -160,6 +160,7 @@ def main():
         epilog=_examples,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
+    parser.add_argument('--model', help='Which model to use (default: %(default)s)', default='networks_stylegan2')
     parser.add_argument('--result-dir', help='Root directory for run results (default: %(default)s)', default='results', metavar='DIR')
     parser.add_argument('--data-dir', help='Dataset root directory', required=True)
     parser.add_argument('--dataset', help='Training dataset', required=True)
