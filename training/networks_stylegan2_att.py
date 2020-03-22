@@ -95,7 +95,7 @@ def modulated_conv2d_layer(x, y, fmaps, kernel, up=False, down=False, demodulate
     ww = w[np.newaxis] # [BkkIO] Introduce minibatch dimension.
 
     ## att mask
-    mask = get_weight([x.shape[2], x.shape[3]], gain=gain, use_wscale=use_wscale, lrmul=lrmul, weight_var=weight_var)
+    mask = get_weight([x.shape[2].value, x.shape[3].value], gain=gain, use_wscale=use_wscale, lrmul=lrmul, weight_var=weight_var)
     x = x + x * mask
 
     # Modulate.
