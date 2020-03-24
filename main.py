@@ -95,7 +95,8 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
         D.func_name = 'training.networks_stylegan2.D_stylegan'
 
     # Configs A-C: Disable path length regularization.
-    if config_id in ['config-a', 'config-b', 'config-c'] or model in ['networks_stylegan2_att']:
+    if config_id in ['config-a', 'config-b', 'config-c'] or\
+            model in ['networks_stylegan2_att', 'networks_stylegan2_satt']:
         G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
 
     # Configs A-B: Disable lazy regularization.
