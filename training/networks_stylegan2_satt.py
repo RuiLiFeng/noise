@@ -733,11 +733,13 @@ def spatial_att(x, noise, lrmul=1.0, bias_var='bias'):
     :return: None negative mask tensor [NCHW]
     """
     fmaps = x.shape[1].value
-    x = tf.reduce_sum(tf.abs(x), axis=1, keepdims=True)
-    noise = tf.reduce_sum(tf.abs(noise), axis=1, keepdims=True)
-    x = tf.sigmoid(instance_norm(x))
-    noise = tf.sigmoid(instance_norm(noise))
+    x = tf.reduce_sum(x, axis=1, keepdims=True)
+    noise = tf.reduce_sum(noise, axis=1, keepdims=True)
+    x_mask = tf.get_variable('x_mask', shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
+    noise_mask = tf.get_variable('noise_mask', shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
+    # x = tf.sigmoid(instance_norm(x))
+    # noise = tf.sigmoid(instance_norm(noise))
     b = tf.get_variable(bias_var, shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
-    att = tf.nn.relu(x - noise + b)
+    att = tf.nn.relu(x * x_mask - noise * noise_mask + b)
     return tf.tile(att, [1, fmaps, 1, 1])
 
