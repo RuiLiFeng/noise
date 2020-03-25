@@ -95,8 +95,10 @@ def modulated_conv2d_layer(x, y, fmaps, kernel, up=False, down=False, demodulate
     ww = w[np.newaxis] # [BkkIO] Introduce minibatch dimension.
 
     ## att mask
-    mask = get_weight([x.shape[2].value, x.shape[3].value], gain=gain, use_wscale=use_wscale, lrmul=lrmul, weight_var='mask')
-    x = x + x * mask
+    if not up and not down:
+
+        mask = 1 + get_weight([x.shape[2].value, x.shape[3].value], gain=gain, use_wscale=use_wscale, lrmul=lrmul, weight_var='mask')
+        x = x * mask * tf.rsqrt(tf.reduce_mean(tf.square(mask)) + 1e-8)
 
     # Modulate.
     s = dense_layer(y, fmaps=x.shape[1].value, weight_var=mod_weight_var) # [BI] Transform incoming W to style.

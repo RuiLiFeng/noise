@@ -458,20 +458,7 @@ def G_synthesis_stylegan2(
         else:
             noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
-        if not up:
-            with tf.variable_scope('Attention_mask'):
-                noise = noise * tf.cast(noise_strength, x.dtype)
-                # sp_att_mask = 1 + spatial_att(x, noise)
-                # sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
-                channel_att_mask = 1 + tf.get_variable('channel_att_mask', shape=[x.shape[1]],
-                                                       initializer=tf.initializers.zeros()) * 0.1
-                channel_att_mask = tf.reshape(channel_att_mask, [-1, x.shape[1]] + [1] * (len(x.shape) - 2)) * tf.rsqrt(
-                    tf.reduce_mean(tf.square(channel_att_mask)) + 1e-8)
-                x += noise
-                # x = x * sp_att_mask
-                x = x * channel_att_mask
-        else:
-            x += noise * tf.cast(noise_strength, x.dtype)
+        x += noise * tf.cast(noise_strength, x.dtype)
         return apply_bias_act(x, act=act)
 
     # Building blocks for main layers.
@@ -708,36 +695,3 @@ def D_stylegan2(
     return scores_out
 
 #----------------------------------------------------------------------------
-
-
-#----------------------------------------------------------------------------
-# New desgin
-
-def instance_norm(x, epsilon=1e-8):
-    assert len(x.shape) == 4 # NCHW
-    with tf.variable_scope('InstanceNorm'):
-        orig_dtype = x.dtype
-        x = tf.cast(x, tf.float32)
-        x -= tf.reduce_mean(x, axis=[2,3], keepdims=True)
-        epsilon = tf.constant(epsilon, dtype=x.dtype, name='epsilon')
-        x *= tf.rsqrt(tf.reduce_mean(tf.square(x), axis=[2,3], keepdims=True) + epsilon)
-        x = tf.cast(x, orig_dtype)
-        return x
-
-
-def spatial_att(x, noise, lrmul=1.0, bias_var='bias'):
-    """
-    Spatial attention mask
-    :param x: [NCHW]
-    :param noise: [NCHW]
-    :return: None negative mask tensor [NCHW]
-    """
-    fmaps = x.shape[1].value
-    x = tf.reduce_sum(tf.abs(x), axis=1, keepdims=True)
-    noise = tf.reduce_sum(tf.abs(noise), axis=1, keepdims=True)
-    x = tf.sigmoid(instance_norm(x))
-    noise = tf.sigmoid(instance_norm(noise))
-    b = tf.get_variable(bias_var, shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
-    att = tf.nn.relu(x - noise + b)
-    return tf.tile(att, [1, fmaps, 1, 1])
-
