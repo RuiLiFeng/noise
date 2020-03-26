@@ -463,13 +463,13 @@ def G_synthesis_stylegan2(
                 noise = noise * tf.cast(noise_strength, x.dtype)
                 sp_att_mask = 1 + spatial_att(x, noise)
                 sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
-                channel_att_mask = 1 + tf.get_variable('channel_att_mask', shape=[x.shape[1]],
-                                                       initializer=tf.initializers.zeros()) * 0.1
-                channel_att_mask = tf.reshape(channel_att_mask, [-1, x.shape[1]] + [1] * (len(x.shape) - 2)) * tf.rsqrt(
-                    tf.reduce_mean(tf.square(channel_att_mask)) + 1e-8)
+                # channel_att_mask = 1 + tf.get_variable('channel_att_mask', shape=[x.shape[1]],
+                #                                        initializer=tf.initializers.zeros()) * 0.1
+                # channel_att_mask = tf.reshape(channel_att_mask, [-1, x.shape[1]] + [1] * (len(x.shape) - 2)) * tf.rsqrt(
+                #     tf.reduce_mean(tf.square(channel_att_mask)) + 1e-8)
                 x += noise
                 x = x * sp_att_mask
-                x = x * channel_att_mask
+                # x = x * channel_att_mask
         else:
             x += noise * tf.cast(noise_strength, x.dtype)
         return apply_bias_act(x, act=act)
