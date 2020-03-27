@@ -458,7 +458,10 @@ def G_synthesis_stylegan2(
         else:
             noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
-        x += noise * tf.cast(noise_strength, x.dtype)
+        with tf.variable_scope('resampling'):
+            mu = conv2d_layer(x, fmaps=fmaps, kernel=kernel, weight_var='mu_weight')
+            log_sigma2 = conv2d_layer(x, fmaps=fmaps, kernel=kernel, weight_var='log_sigma2_weight')
+        x = (mu + noise * tf.cast(noise_strength, x.dtype)) * tf.exp(log_sigma2)
         return apply_bias_act(x, act=act)
 
     # Building blocks for main layers.
