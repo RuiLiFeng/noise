@@ -23,6 +23,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
     G_args = EasyDict(func_name='training.' + model + '.G_main')
     dataset_args = EasyDict(tfrecord_dir=dataset_name)
     G_args.fmap_base = 8 << 10
+    tflib.init_tf()
     training_set = dataset.load_dataset(data_dir=dnnlib.convert_path(data_dir), verbose=True, **dataset_args)
     print('Constructing networks...')
     G = tflib.Network('G', num_channels=training_set.shape[0], resolution=training_set.shape[1],
