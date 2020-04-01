@@ -19,9 +19,9 @@ import pretrained_networks
 
 #----------------------------------------------------------------------------
 
-def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset=None, model=None):
+def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_name=None, model=None):
     G_args = EasyDict(func_name='training.' + model + '.G_main')
-    dataset_args = EasyDict(tfrecord_dir=dataset)
+    dataset_args = EasyDict(tfrecord_dir=dataset_name)
     G_args.fmap_base = 8 << 10
     training_set = dataset.load_dataset(data_dir=dnnlib.convert_path(data_dir), verbose=True, **dataset_args)
     print('Constructing networks...')
