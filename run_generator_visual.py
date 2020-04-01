@@ -9,16 +9,28 @@ import numpy as np
 import PIL.Image
 import dnnlib
 import dnnlib.tflib as tflib
+from dnnlib import EasyDict
+
 import re
 import sys
+from training import dataset
 
 import pretrained_networks
 
 #----------------------------------------------------------------------------
 
-def generate_images(network_pkl, seeds, truncation_psi):
+def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset=None, model=None):
+    G_args = EasyDict(func_name='training.' + model + '.G_main')
+    dataset_args = EasyDict(tfrecord_dir=dataset)
+    G_args.fmap_base = 8 << 10
+    training_set = dataset.load_dataset(data_dir=dnnlib.convert_path(data_dir), verbose=True, **dataset_args)
+    print('Constructing networks...')
+    G = tflib.Network('G', num_channels=training_set.shape[0], resolution=training_set.shape[1],
+                      label_size=training_set.label_size, **G_args)
+    Gs = G.clone('Gs')
     print('Loading networks from "%s"...' % network_pkl)
-    _G, _D, Gs = pretrained_networks.load_networks(network_pkl)
+    _G, _D, _Gs = pretrained_networks.load_networks(network_pkl)
+    Gs.copy_vars_from(_Gs)
     noise_vars = [var for name, var in Gs.components.synthesis.vars.items() if name.startswith('noise')]
 
     Gs_kwargs = dnnlib.EasyDict()
@@ -134,6 +146,9 @@ Run 'python %(prog)s <subcommand> --help' for subcommand help.''',
     parser_generate_images.add_argument('--seeds', type=_parse_num_range, help='List of random seeds', required=True)
     parser_generate_images.add_argument('--truncation-psi', type=float, help='Truncation psi (default: %(default)s)', default=0.5)
     parser_generate_images.add_argument('--result-dir', help='Root directory for run results (default: %(default)s)', default='results', metavar='DIR')
+    parser_generate_images.add_argument('--data-dir', help='Dataset root directory', required=True)
+    parser_generate_images.add_argument('--dataset', help='Training dataset', required=True)
+    parser_generate_images.add_argument('--model', help='Which model to use (default: %(default)s)', default='networks_stylegan2')
 
     parser_style_mixing_example = subparsers.add_parser('style-mixing-example', help='Generate style mixing video')
     parser_style_mixing_example.add_argument('--network', help='Network pickle filename', dest='network_pkl', required=True)
