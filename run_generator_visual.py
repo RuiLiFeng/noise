@@ -147,7 +147,7 @@ Run 'python %(prog)s <subcommand> --help' for subcommand help.''',
     parser_generate_images.add_argument('--truncation-psi', type=float, help='Truncation psi (default: %(default)s)', default=0.5)
     parser_generate_images.add_argument('--result-dir', help='Root directory for run results (default: %(default)s)', default='results', metavar='DIR')
     parser_generate_images.add_argument('--data-dir', help='Dataset root directory', required=True)
-    parser_generate_images.add_argument('--dataset', help='Training dataset', required=True)
+    parser_generate_images.add_argument('--dataset-name', help='Training dataset', required=True)
     parser_generate_images.add_argument('--model', help='Which model to use (default: %(default)s)', default='networks_stylegan2')
 
     parser_style_mixing_example = subparsers.add_parser('style-mixing-example', help='Generate style mixing video')
