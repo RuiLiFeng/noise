@@ -51,7 +51,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         ops = [op for op in ops if 'n_visual' in op.name]
         print(ops)
         n_v = ops[0].outputs[0].eval()
-        print(n_v)
+        print(n_v, ops[0])
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(n_v, 'RGB').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
 
