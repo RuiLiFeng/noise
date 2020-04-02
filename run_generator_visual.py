@@ -45,10 +45,10 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         rnd = np.random.RandomState(seed)
         z = rnd.randn(1, *Gs.input_shape[1:]) # [minibatch, component]
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars}) # [height, width]
-        images, visual_dict = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
+        images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
+        n_v = Gs.get_var('noise_visual')
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
-        for key in visual_dict:
-            PIL.Image.fromarray(visual_dict[key], 'RGB').save(dnnlib.make_run_dir_path('seed%04d-key.png' % seed))
+        PIL.Image.fromarray(n_v, 'RGB').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
 
 #----------------------------------------------------------------------------
 
