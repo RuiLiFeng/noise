@@ -49,7 +49,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
         ops = tf.get_default_graph().get_operations()
         ops = [op for op in ops if op.name.endswith('n_visual')]
-        n_v = ops[0].outputs[0].eval()
+        n_v = ops[0].outputs[0].eval(feed_dict={'G_synthesis/dlatents_in': z})
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(n_v, 'RGB').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
 
