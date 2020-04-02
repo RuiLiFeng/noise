@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-end-line="49" />
+            <state relative-caret-position="399">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="e#227#242#0" expanded="true" />
                 <element signature="e#1710#4065#0" />
@@ -69,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3895">
-              <caret line="247" column="51" selection-start-line="247" selection-start-column="51" selection-end-line="247" selection-end-column="51" />
+            <state relative-caret-position="283">
+              <caret line="242" column="22" lean-forward="true" selection-start-line="242" selection-start-column="22" selection-end-line="242" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -81,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="464" column="41" lean-forward="true" selection-start-line="464" selection-start-column="41" selection-end-line="464" selection-end-column="41" />
+            <state relative-caret-position="336">
+              <caret line="465" lean-forward="true" selection-start-line="465" selection-end-line="465" />
             </state>
           </provider>
         </entry>
@@ -90,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_att.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1805">
+            <state relative-caret-position="416">
               <caret line="100" column="71" selection-start-line="100" selection-start-column="71" selection-end-line="100" selection-end-column="71" />
             </state>
           </provider>
@@ -272,18 +272,17 @@
       <workItem from="1585148960718" duration="3985000" />
       <workItem from="1585302321345" duration="1674000" />
       <workItem from="1585565790901" duration="2999000" />
-      <workItem from="1585761538687" duration="4591000" />
+      <workItem from="1585761538687" duration="5480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38233000" />
+    <option name="totallyTimeSpent" value="39122000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20978552" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20978552" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -297,7 +296,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28611898" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28611898" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.18696883" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -422,13 +421,6 @@
     <entry file="file://$PROJECT_DIR$/dataset_tool.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_att.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="100" column="71" selection-start-line="100" selection-start-column="71" selection-end-line="100" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_control.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -487,24 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="464" column="41" lean-forward="true" selection-start-line="464" selection-start-column="41" selection-end-line="464" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-end-line="49" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-            <element signature="e#1710#4065#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/conda/Lib/site-packages/tensorflow/python/framework/ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12731">
@@ -515,10 +489,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_att.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="100" column="71" selection-start-line="100" selection-start-column="71" selection-end-line="100" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-1189760310/lxml/html/diff.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="737" column="8" selection-start-line="737" selection-start-column="8" selection-end-line="737" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3895">
-          <caret line="247" column="51" selection-start-line="247" selection-start-column="51" selection-end-line="247" selection-end-column="51" />
+        <state relative-caret-position="283">
+          <caret line="242" column="22" lean-forward="true" selection-start-line="242" selection-start-column="22" selection-end-line="242" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="465" lean-forward="true" selection-start-line="465" selection-end-line="465" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+            <element signature="e#1710#4065#0" />
+          </folding>
         </state>
       </provider>
     </entry>
