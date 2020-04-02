@@ -50,7 +50,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         # n_v_list = [var.outputs[0] for var in tf.Graph.get_operation_by_name(name='n_visual')]
         # n_v = Gs.get_var(n_v_list[0])
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
-        PIL.Image.fromarray(v_a[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
+        PIL.Image.fromarray(v_a, 'RGB').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
 
 #----------------------------------------------------------------------------
 
