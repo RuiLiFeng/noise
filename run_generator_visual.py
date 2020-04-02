@@ -48,6 +48,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars}) # [height, width]
         images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
         ops = tf.get_default_graph().get_operations()
+        print([op for op in ops if op.name.endswith('dlatents_in')])
         ops = [op for op in ops if op.name.endswith('n_visual')]
         n_v_t = ops[0].outputs[0]
         n_v = tflib.run(n_v_t, {'G_main/dlatents_in:0': z})
