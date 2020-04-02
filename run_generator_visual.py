@@ -49,6 +49,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
         ops = tf.get_default_graph().get_operations()
         ops = [op for op in ops if 'n_visual' in op.name]
+        print(ops)
         n_v = ops[0].outputs[0].eval()
         print(n_v)
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
