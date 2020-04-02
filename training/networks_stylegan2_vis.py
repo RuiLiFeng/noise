@@ -235,13 +235,13 @@ def G_main(
     if 'lod' in components.synthesis.vars:
         deps.append(tf.assign(components.synthesis.vars['lod'], lod_in))
     with tf.control_dependencies(deps):
-        images_out, visual_list = components.synthesis.get_output_for(dlatents, is_training=is_training, force_clean_graph=is_template_graph, **kwargs)
+        images_out = components.synthesis.get_output_for(dlatents, is_training=is_training, force_clean_graph=is_template_graph, **kwargs)
 
     # Return requested outputs.
     images_out = tf.identity(images_out, name='images_out')
     if return_dlatents:
         return images_out, dlatents
-    return images_out, visual_list
+    return images_out
 
 #----------------------------------------------------------------------------
 # Mapping network.
@@ -463,7 +463,6 @@ def G_synthesis_stylegan2(
         noise_visual = tf.reduce_sum(noise, axis=1, name='n_visual')
         x += noise * tf.cast(noise_strength, x.dtype)
         merge_visual = tf.reduce_sum(x, axis=1, name='merge_visual')
-        visual_array.append([x_visual, noise_visual, merge_visual])
         return apply_bias_act(x, act=act)
 
     # Building blocks for main layers.
@@ -508,7 +507,7 @@ def G_synthesis_stylegan2(
     images_out = y
 
     assert images_out.dtype == tf.as_dtype(dtype)
-    return tf.identity(images_out, name='images_out'), visual_array[0][0]
+    return tf.identity(images_out, name='images_out')
 
 #----------------------------------------------------------------------------
 # Original StyleGAN discriminator.
