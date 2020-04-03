@@ -241,7 +241,7 @@ def G_main(
     images_out = tf.identity(images_out, name='images_out')
     if return_dlatents:
         return images_out, dlatents
-    return images_out, visual_array[30]
+    return images_out, visual_array
 
 #----------------------------------------------------------------------------
 # Mapping network.
@@ -508,7 +508,7 @@ def G_synthesis_stylegan2(
     images_out = y
 
     assert images_out.dtype == tf.as_dtype(dtype)
-    return tf.identity(images_out, name='images_out'), visual_array
+    return tf.identity(images_out, name='images_out'), visual_array[30]
 
 #----------------------------------------------------------------------------
 # Original StyleGAN discriminator.
