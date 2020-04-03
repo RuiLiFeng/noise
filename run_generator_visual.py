@@ -27,11 +27,10 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
     tflib.init_tf()
     training_set = dataset.load_dataset(data_dir=dnnlib.convert_path(data_dir), verbose=True, **dataset_args)
     print('Constructing networks...')
-    G = tflib.Network('G', num_channels=training_set.shape[0], resolution=training_set.shape[1],
+    Gs = tflib.Network('G', num_channels=training_set.shape[0], resolution=training_set.shape[1],
                       label_size=training_set.label_size, **G_args)
-    Gs = G.clone('Gs')
     print('Loading networks from "%s"...' % network_pkl)
-    _G, _D, _Gs = pretrained_networks.load_networks(network_pkl)
+    _, _, _Gs = pretrained_networks.load_networks(network_pkl)
     Gs.copy_vars_from(_Gs)
     noise_vars = [var for name, var in Gs.components.synthesis.vars.items() if name.startswith('noise')]
 
@@ -53,6 +52,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         ops = [op for op in ops if op.name.endswith('n_visual')]
         n_v_t = ops[30].outputs[0]
         n_v = tflib.run(n_v_t, {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
+        print(n_v.shape)
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(n_v, 'RGB').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
 
