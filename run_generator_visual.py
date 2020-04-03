@@ -23,9 +23,9 @@ import pretrained_networks
 
 def adjust_range(x):
     x = x - np.mean(x)
-    x = x / (np.std(x) + 1e-8)
-    x = np.clip(x, -1.0, 1.0)
-    x = (x + 1) * 255 / 2
+    x_max = np.max(np.abs(x))
+    x = x / (x_max + 1e-8)
+    x = (1 + x) * 255 / 2
     return x
 
 
