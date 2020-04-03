@@ -11,6 +11,7 @@ import dnnlib
 import dnnlib.tflib as tflib
 from dnnlib import EasyDict
 import tensorflow as tf
+from training import misc
 
 import re
 import sys
@@ -35,7 +36,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
     noise_vars = [var for name, var in Gs.components.synthesis.vars.items() if name.startswith('noise')]
 
     Gs_kwargs = dnnlib.EasyDict()
-    Gs_kwargs.output_transform = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
+    # Gs_kwargs.output_transform = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
     Gs_kwargs.randomize_noise = False
     if truncation_psi is not None:
         Gs_kwargs.truncation_psi = truncation_psi
@@ -45,20 +46,23 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         rnd = np.random.RandomState(seed)
         z = rnd.randn(1, *Gs.input_shape[1:]) # [minibatch, component]
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars}) # [height, width]
-        images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
-        w = Gs.components.mapping.run(z, None)
-        ops = tf.get_default_graph().get_operations()
-        print([op for op in ops if op.name.endswith('dlatents_in')])
-        n_ops = [op for op in ops if op.name.endswith('n_visual')]
-        x_ops = [op for op in ops if op.name.endswith('x_visual')]
-        print(n_ops)
-        print(x_ops)
-        n_v_t = n_ops[30].outputs[0]
-        x_v_t = x_ops[30].outputs[0]
-        n_v, x_v = tflib.run([n_v_t, x_v_t], {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
+        images, visual_array = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
+        # w = Gs.components.mapping.run(z, None)
+        # ops = tf.get_default_graph().get_operations()
+        # print([op for op in ops if op.name.endswith('dlatents_in')])
+        # n_ops = [op for op in ops if op.name.endswith('n_visual')]
+        # x_ops = [op for op in ops if op.name.endswith('x_visual')]
+        # print(n_ops)
+        # print(x_ops)
+        # n_v_t = n_ops[30].outputs[0]
+        # x_v_t = x_ops[30].outputs[0]
+        # n_v, x_v = tflib.run([n_v_t, x_v_t], {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
+        images = tflib.convert_images_to_uint8(images, nchw_to_nhwc=True)
+        x_v, n_v, m_v = visual_array[30]
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(n_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
         PIL.Image.fromarray(x_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
+        PIL.Image.fromarray(m_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-mv.png' % seed))
 
 
 #----------------------------------------------------------------------------
