@@ -241,7 +241,7 @@ def G_main(
     images_out = tf.identity(images_out, name='images_out')
     if return_dlatents:
         return images_out, dlatents
-    return images_out, visual_array
+    return images_out, visual_array[30]
 
 #----------------------------------------------------------------------------
 # Mapping network.

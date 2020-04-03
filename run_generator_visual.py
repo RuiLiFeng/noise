@@ -58,7 +58,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         # x_v_t = x_ops[30].outputs[0]
         # n_v, x_v = tflib.run([n_v_t, x_v_t], {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
         images = tflib.convert_images_to_uint8(images, nchw_to_nhwc=True)
-        x_v, n_v, m_v = visual_array[30]
+        x_v, n_v, m_v = visual_array
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(n_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
         PIL.Image.fromarray(x_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
