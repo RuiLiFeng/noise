@@ -50,11 +50,15 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         ops = tf.get_default_graph().get_operations()
         print([op for op in ops if op.name.endswith('dlatents_in')])
         ops = [op for op in ops if op.name.endswith('n_visual')]
-        n_v_t = ops[40].outputs[0]
-        n_v = tflib.run(n_v_t, {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
-        print(n_v.shape, n_v_t.name)
+        x_ops = [op for op in ops if op.name.endswith('x_visual')]
+        n_v_t = ops[32].outputs[0]
+        x_v_t = x_ops[32].outputs[0]
+        n_v, x_v = tflib.run([n_v_t, x_v_t], {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
+        print(n_v_t, x_v_t)
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(n_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
+        PIL.Image.fromarray(x_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
+
 
 #----------------------------------------------------------------------------
 
