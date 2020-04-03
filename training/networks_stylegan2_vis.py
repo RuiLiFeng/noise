@@ -459,10 +459,10 @@ def G_synthesis_stylegan2(
         else:
             noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
-        x_visual = tf.reduce_sum(x, axis=1, name='x_visual')
-        noise_visual = tf.reduce_sum(noise, axis=1, name='n_visual')
+        x_visual = tf.reduce_sum(tf.abs(x), axis=1, name='x_visual')
+        noise_visual = tf.reduce_sum(tf.abs(noise), axis=1, name='n_visual')
         x += noise * tf.cast(noise_strength, x.dtype)
-        merge_visual = tf.reduce_sum(x, axis=1, name='merge_visual')
+        merge_visual = tf.reduce_sum(tf.abs(x), axis=1, name='merge_visual')
         visual_array.append((x_visual, noise_visual, merge_visual))
         return apply_bias_act(x, act=act)
 
