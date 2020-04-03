@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_generator_visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_generator_visual.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +15,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-703">
-              <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-end-line="9" />
+            <state relative-caret-position="114">
+              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
               <folding>
+                <element signature="e#227#242#0" expanded="true" />
                 <element signature="e#2799#5154#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run_generator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+              <folding>
+                <element signature="e#227#242#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -29,15 +42,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="8455">
               <caret line="459" column="54" selection-start-line="459" selection-start-column="54" selection-end-line="459" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://E:/conda/Lib/collections/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24377">
-              <caret line="1290" column="8" selection-start-line="1290" selection-start-column="8" selection-end-line="1290" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -219,12 +223,12 @@
       <workItem from="1585302321345" duration="1674000" />
       <workItem from="1585565790901" duration="2999000" />
       <workItem from="1585761538687" duration="13660000" />
-      <workItem from="1585843004079" duration="1351000" />
+      <workItem from="1585843004079" duration="1817000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48653000" />
+    <option name="totallyTimeSpent" value="49119000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
@@ -243,8 +247,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.23796034" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.2733711" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3512748" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.2733711" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -382,13 +386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pretrained_networks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1337">
-          <caret line="74" column="16" lean-forward="true" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -441,13 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/conda/Lib/site-packages/tensorflow/python/ops/math_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-601">
@@ -496,11 +486,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pretrained_networks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="74" column="16" lean-forward="true" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-703">
-          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-end-line="9" />
+        <state relative-caret-position="114">
+          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
           <folding>
+            <element signature="e#227#242#0" expanded="true" />
             <element signature="e#2799#5154#0" />
           </folding>
         </state>
