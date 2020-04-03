@@ -463,7 +463,7 @@ def G_synthesis_stylegan2(
         noise_visual = tf.reduce_sum(noise, axis=1, name='n_visual')
         x += noise * tf.cast(noise_strength, x.dtype)
         merge_visual = tf.reduce_sum(x, axis=1, name='merge_visual')
-        visual_array.append([x_visual, noise_visual, merge_visual])
+        visual_array.append((x_visual, noise_visual, merge_visual))
         return apply_bias_act(x, act=act)
 
     # Building blocks for main layers.
@@ -508,7 +508,7 @@ def G_synthesis_stylegan2(
     images_out = y
 
     assert images_out.dtype == tf.as_dtype(dtype)
-    return tf.identity(images_out, name='images_out'), visual_array[30]
+    return tf.identity(images_out, name='images_out') + visual_array[20]
 
 #----------------------------------------------------------------------------
 # Original StyleGAN discriminator.
