@@ -21,6 +21,14 @@ import pretrained_networks
 
 #----------------------------------------------------------------------------
 
+def adjust_range(x):
+    x = x - np.mean(x)
+    x = x / (np.std(x) + 1e-8)
+    x = np.clip(x, -1.0, 1.0)
+    x = (x + 1) * 255 / 2
+    return x
+
+
 def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_name=None, model=None):
     G_args = EasyDict(func_name='training.' + model + '.G_main')
     dataset_args = EasyDict(tfrecord_dir=dataset_name)
@@ -58,12 +66,10 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         # x_v_t = x_ops[30].outputs[0]
         # n_v, x_v = tflib.run([n_v_t, x_v_t], {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
         print(images.shape, n_v.shape, x_v.shape, m_v.shape)
-        print(images)
-        print(training_set.dynamic_range)
-        misc.save_image_grid(images, dnnlib.make_run_dir_path('seed%04d.png' % seed), drange=training_set.dynamic_range)
-        PIL.Image.fromarray(n_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
-        PIL.Image.fromarray(x_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
-        PIL.Image.fromarray(m_v[0], 'L').save(dnnlib.make_run_dir_path('seed%04d-mv.png' % seed))
+        misc.convert_to_pil_image(images[0], drange=[-1, 1]).save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
+        PIL.Image.fromarray(adjust_range(n_v[0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
+        PIL.Image.fromarray(adjust_range(x_v[0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
+        PIL.Image.fromarray(adjust_range(m_v[0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-mv.png' % seed))
 
 
 #----------------------------------------------------------------------------

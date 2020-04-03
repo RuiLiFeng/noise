@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/run_generator_visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_generator_visual.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/networks_stylegan2_vis.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/networks_stylegan2_vis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +18,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/training/training_loop.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="100">
-                    <caret line="142" column="15" selection-start-line="142" selection-start-column="15" selection-end-line="142" selection-end-column="15" />
+                  <state relative-caret-position="233">
+                    <caret line="125" column="4" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
                     <folding>
                       <element signature="e#256#274#0" expanded="true" />
                     </folding>
@@ -280,15 +279,16 @@
       <workItem from="1585302321345" duration="1674000" />
       <workItem from="1585565790901" duration="2999000" />
       <workItem from="1585761538687" duration="13660000" />
-      <workItem from="1585843004079" duration="5779000" />
+      <workItem from="1585843004079" duration="6035000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53081000" />
+    <option name="totallyTimeSpent" value="53337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2124665" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -569,8 +569,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/training/training_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="142" column="15" selection-start-line="142" selection-start-column="15" selection-end-line="142" selection-end-column="15" />
+        <state relative-caret-position="233">
+          <caret line="125" column="4" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
           <folding>
             <element signature="e#256#274#0" expanded="true" />
           </folding>
