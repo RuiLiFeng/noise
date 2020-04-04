@@ -458,11 +458,14 @@ def G_synthesis_stylegan2(
         else:
             noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
+        noise = noise * tf.cast(noise_strength, x.dtype)
+
         with tf.variable_scope('resampling'):
-            sp_att_mask = 1 + spatial_att(x)
-            mu = conv2d_layer(x, fmaps=fmaps, kernel=kernel, weight_var='mu_weight')
-            log_sigma2 = conv2d_layer(x, fmaps=fmaps, kernel=kernel, weight_var='log_sigma2_weight')
-        x = (mu + noise * tf.cast(noise_strength, x.dtype)) * tf.exp(log_sigma2)
+            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.5))
+            sp_att_mask = alpha + (1-alpha) * spatial_att(x)
+            sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
+            x += noise
+            x = x * sp_att_mask
         return apply_bias_act(x, act=act)
 
     # Building blocks for main layers.
@@ -725,17 +728,16 @@ def adjust_range(x):
         return x
 
 
-def spatial_att(x, lrmul=1.0, bias_var='bias'):
+def spatial_att(x):
     """
     Spatial attention mask
     :param x: [NCHW]
     :return: None negative mask tensor [NCHW]
     """
     fmaps = x.shape[1].value
-    x = tf.reduce_sum(x, axis=1, keepdims=True)
-    x_mask = tf.get_variable('x_mask', shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
-    # x = tf.sigmoid(instance_norm(x))
-    # noise = tf.sigmoid(instance_norm(noise))
-    b = tf.get_variable(bias_var, shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
-    att = tf.nn.relu(x * x_mask + b)
+    x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
+    x = (adjust_range(x) + 1.0) / 2.0
+    x_mask = get_weight(shape=[x.shape[2], x.shape[3]], weight_var='x_mask')
+    b = get_weight(shape=[x.shape[2], x.shape[3]], weight_var='bias')
+    att = x * x_mask + b
     return tf.tile(att, [1, fmaps, 1, 1])
