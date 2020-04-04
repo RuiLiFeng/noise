@@ -459,7 +459,7 @@ def G_synthesis_stylegan2(
         else:
             noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
-        x_visual = x
+        x_visual = tf.identity(x)
         noise_visual = noise
         x += noise * tf.cast(noise_strength, x.dtype)
         merge_visual = x
