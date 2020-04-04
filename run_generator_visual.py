@@ -22,10 +22,14 @@ import pretrained_networks
 #----------------------------------------------------------------------------
 
 def adjust_range(x):
-    x = x - np.mean(x)
-    x_max = np.max(np.abs(x))
-    x = x / (x_max + 1e-8)
-    x = (1 + x) * 255 / 2
+    if x.ndim == 2:
+        x = x - np.mean(x)
+        x_max = np.max(np.abs(x))
+        x = x / (x_max + 1e-8)
+    elif x.ndim == 4:
+        x = x - np.mean(x, axis=(2, 3), keepdims=True)
+        x_max = np.max(np.abs(x), axis=(2, 3), keepdims=True)
+        x = x / (x_max + 1e-8)
     return x
 
 
@@ -60,11 +64,15 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         misc.convert_to_pil_image(images[0], drange=[-1, 1]).save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         PIL.Image.fromarray(adjust_range(n_v[0][0]), 'L').save(
             dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
-        for id in range(x_v.shape[1]):
-            PIL.Image.fromarray(adjust_range(x_v[0][id]), 'L').save(
-                dnnlib.make_run_dir_path('seed%04d-xv%d.png' % (seed, id)))
-            PIL.Image.fromarray(adjust_range(m_v[0][id]), 'L').save(
-                dnnlib.make_run_dir_path('seed%04d-mv%d.png' % (seed, id)))
+        misc.save_image_grid(adjust_range(x_v).transpose([1, 0, 2, 3]),
+                             dnnlib.make_run_dir_path('seed%04d-xv.png' % seed), drange=[-1, 1])
+        misc.save_image_grid(adjust_range(m_v).transpose([1, 0, 2, 3]),
+                             dnnlib.make_run_dir_path('seed%04d-xv.png' % seed), drange=[-1, 1])
+        # for id in range(x_v.shape[1]):
+        #     PIL.Image.fromarray(adjust_range(x_v[0][id]), 'L').save(
+        #         dnnlib.make_run_dir_path('seed%04d-xv%d.png' % (seed, id)))
+        #     PIL.Image.fromarray(adjust_range(m_v[0][id]), 'L').save(
+        #         dnnlib.make_run_dir_path('seed%04d-mv%d.png' % (seed, id)))
 
 
 #----------------------------------------------------------------------------
