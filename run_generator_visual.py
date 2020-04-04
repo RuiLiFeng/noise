@@ -74,10 +74,10 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         #                      dnnlib.make_run_dir_path('seed%04d-xvs.png' % seed), drange=[-1, 1])
         # misc.save_image_grid(adjust_range(np.sum(np.clip(-m_v, 0, 100), axis=1, keepdims=True)),
         #                      dnnlib.make_run_dir_path('seed%04d-mvs.png' % seed), drange=[-1, 1])
-        print(np.exp(np.sum(-0.0001 * x_v, axis=1, keepdims=True)) / np.sum(np.exp(np.sum(-0.0001 * x_v, axis=1, keepdims=True)), axis=(2, 3), keepdims=True))
-        misc.save_image_grid(np.exp(np.sum(-0.0001 * x_v, axis=1, keepdims=True)) / np.sum(np.exp(np.sum(-0.0001 * x_v, axis=1, keepdims=True)), axis=(2, 3), keepdims=True),
+        print(np.exp(np.mean(-0.0001 * x_v, axis=1, keepdims=True)) / np.sum(np.exp(np.mean(-0.0001 * x_v, axis=1, keepdims=True)), axis=(2, 3), keepdims=True))
+        misc.save_image_grid(np.exp(np.mean(-0.0001 * x_v, axis=1, keepdims=True)) / np.sum(np.exp(np.mean(-0.0001 * x_v, axis=1, keepdims=True)), axis=(2, 3), keepdims=True),
                              dnnlib.make_run_dir_path('seed%04d-xvs.png' % seed), drange=[0, 1])
-        misc.save_image_grid(np.exp(np.sum(-0.0001 * m_v, axis=1, keepdims=True)) / np.sum(np.exp(np.sum(-0.0001 * x_v, axis=1, keepdims=True)), axis=(2, 3), keepdims=True),
+        misc.save_image_grid(np.exp(np.mean(-0.0001 * m_v, axis=1, keepdims=True)) / np.sum(np.exp(np.mean(-0.0001 * x_v, axis=1, keepdims=True)), axis=(2, 3), keepdims=True),
                              dnnlib.make_run_dir_path('seed%04d-mvs.png' % seed), drange=[0, 1])
 
 #----------------------------------------------------------------------------
