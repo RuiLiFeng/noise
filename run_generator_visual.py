@@ -62,16 +62,16 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
 
         print(images.shape, n_v.shape, x_v.shape, m_v.shape)
         misc.convert_to_pil_image(images[0], drange=[-1, 1]).save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
-        misc.save_image_grid(adjust_range(n_v[0]),
+        misc.save_image_grid(adjust_range(n_v),
                              dnnlib.make_run_dir_path('seed%04d-nv.png' % seed), drange=[-1, 1])
         print(np.linalg.norm(x_v - m_v))
         misc.save_image_grid(adjust_range(x_v).transpose([1, 0, 2, 3]),
                              dnnlib.make_run_dir_path('seed%04d-xv.png' % seed), drange=[-1, 1])
         misc.save_image_grid(adjust_range(m_v).transpose([1, 0, 2, 3]),
                              dnnlib.make_run_dir_path('seed%04d-mv.png' % seed), drange=[-1, 1])
-        misc.save_image_grid(adjust_range(np.sum(np.clip(-x_v, 0, 100), axis=1, keepdims=True)),
+        misc.save_image_grid(adjust_range(np.sum(1 / (1 + np.exp(x_v)), axis=1, keepdims=True)),
                              dnnlib.make_run_dir_path('seed%04d-xvs.png' % seed), drange=[-1, 1])
-        misc.save_image_grid(adjust_range(np.sum(np.clip(-m_v, 0, 100), axis=1, keepdims=True)),
+        misc.save_image_grid(adjust_range(np.sum(1 / (1 + np.exp(m_v)), axis=1, keepdims=True)),
                              dnnlib.make_run_dir_path('seed%04d-mvs.png' % seed), drange=[-1, 1])
         # for id in range(x_v.shape[1]):
         #     PIL.Image.fromarray(adjust_range(x_v[0][id]), 'L').save(

@@ -459,6 +459,7 @@ def G_synthesis_stylegan2(
             noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
         with tf.variable_scope('resampling'):
+            sp_att_mask = 1 + spatial_att(x)
             mu = conv2d_layer(x, fmaps=fmaps, kernel=kernel, weight_var='mu_weight')
             log_sigma2 = conv2d_layer(x, fmaps=fmaps, kernel=kernel, weight_var='log_sigma2_weight')
         x = (mu + noise * tf.cast(noise_strength, x.dtype)) * tf.exp(log_sigma2)
@@ -698,3 +699,31 @@ def D_stylegan2(
     return scores_out
 
 #----------------------------------------------------------------------------
+
+
+def instance_norm(x, epsilon=1e-8):
+    assert len(x.shape) == 4 # NCHW
+    with tf.variable_scope('InstanceNorm'):
+        orig_dtype = x.dtype
+        x = tf.cast(x, tf.float32)
+        x -= tf.reduce_mean(x, axis=[2,3], keepdims=True)
+        epsilon = tf.constant(epsilon, dtype=x.dtype, name='epsilon')
+        x *= tf.rsqrt(tf.reduce_mean(tf.square(x), axis=[2,3], keepdims=True) + epsilon)
+        x = tf.cast(x, orig_dtype)
+        return x
+
+
+def spatial_att(x, lrmul=1.0, bias_var='bias'):
+    """
+    Spatial attention mask
+    :param x: [NCHW]
+    :return: None negative mask tensor [NCHW]
+    """
+    fmaps = x.shape[1].value
+    x = tf.reduce_sum(x, axis=1, keepdims=True)
+    x_mask = tf.get_variable('x_mask', shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
+    # x = tf.sigmoid(instance_norm(x))
+    # noise = tf.sigmoid(instance_norm(noise))
+    b = tf.get_variable(bias_var, shape=[x.shape[2], x.shape[3]], initializer=tf.initializers.zeros()) * lrmul
+    att = tf.nn.relu(x * x_mask + b)
+    return tf.tile(att, [1, fmaps, 1, 1])
