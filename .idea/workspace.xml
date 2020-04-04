@@ -68,11 +68,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="74" column="97" lean-forward="true" selection-start-line="74" selection-start-column="97" selection-end-line="74" selection-end-column="97" />
+            <state relative-caret-position="407">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
               <folding>
                 <element signature="e#227#242#0" expanded="true" />
               </folding>
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="728" column="41" lean-forward="true" selection-start-line="728" selection-start-column="41" selection-end-line="728" selection-end-column="41" />
+            <state relative-caret-position="344">
+              <caret line="715" column="47" lean-forward="true" selection-start-line="715" selection-start-column="47" selection-end-line="715" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -164,8 +164,8 @@
         <option value="$PROJECT_DIR$/training/networks_stylegan2_satt.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_vis.py" />
-        <option value="$PROJECT_DIR$/run_generator_visual.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_resample.py" />
+        <option value="$PROJECT_DIR$/run_generator_visual.py" />
       </list>
     </option>
   </component>
@@ -301,16 +301,15 @@
       <workItem from="1585565790901" duration="2999000" />
       <workItem from="1585761538687" duration="13660000" />
       <workItem from="1585843004079" duration="8060000" />
-      <workItem from="1585930682464" duration="7220000" />
+      <workItem from="1585930682464" duration="7523000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62582000" />
+    <option name="totallyTimeSpent" value="62885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21514745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -567,16 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="74" column="97" lean-forward="true" selection-start-line="74" selection-start-column="97" selection-end-line="74" selection-end-column="97" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run_generator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -601,8 +590,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="728" column="41" lean-forward="true" selection-start-line="728" selection-start-column="41" selection-end-line="728" selection-end-column="41" />
+        <state relative-caret-position="344">
+          <caret line="715" column="47" lean-forward="true" selection-start-line="715" selection-start-column="47" selection-end-line="715" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
