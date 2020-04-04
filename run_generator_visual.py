@@ -55,21 +55,12 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         z = rnd.randn(1, *Gs.input_shape[1:]) # [minibatch, component]
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars}) # [height, width]
         images, x_v, n_v, m_v = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
-        # w = Gs.components.mapping.run(z, None)
-        # ops = tf.get_default_graph().get_operations()
-        # print([op for op in ops if op.name.endswith('dlatents_in')])
-        # n_ops = [op for op in ops if op.name.endswith('n_visual')]
-        # x_ops = [op for op in ops if op.name.endswith('x_visual')]
-        # print(n_ops)
-        # print(x_ops)
-        # n_v_t = n_ops[30].outputs[0]
-        # x_v_t = x_ops[30].outputs[0]
-        # n_v, x_v = tflib.run([n_v_t, x_v_t], {'G_synthesis/dlatents_in:0': w, 'G_synthesis_1/dlatents_in:0': w})
+
         print(images.shape, n_v.shape, x_v.shape, m_v.shape)
         misc.convert_to_pil_image(images[0], drange=[-1, 1]).save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
-        PIL.Image.fromarray(adjust_range(n_v[0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
-        PIL.Image.fromarray(adjust_range(x_v[0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
-        PIL.Image.fromarray(adjust_range(m_v[0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-mv.png' % seed))
+        PIL.Image.fromarray(adjust_range(n_v[0][0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-nv.png' % seed))
+        PIL.Image.fromarray(adjust_range(x_v[0][0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-xv.png' % seed))
+        PIL.Image.fromarray(adjust_range(m_v[0][0]), 'L').save(dnnlib.make_run_dir_path('seed%04d-mv.png' % seed))
 
 
 #----------------------------------------------------------------------------
