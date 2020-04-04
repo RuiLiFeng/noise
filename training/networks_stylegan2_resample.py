@@ -713,6 +713,18 @@ def instance_norm(x, epsilon=1e-8):
         return x
 
 
+def adjust_range(x):
+    assert len(x.shape) == 4
+    with tf.variable_scope('Adjust_range'):
+        orig_dtype = x.dtype
+        x = tf.cast(x, tf.float32)
+        x -= tf.reduce_mean(x, axis=[2, 3], keepdims=True)
+        x_max = tf.reduce_max(x, axis=(2, 3), keepdims=True)
+        x = x / (x_max + 1e-8)
+        x = tf.cast(x, orig_dtype)
+        return x
+
+
 def spatial_att(x, lrmul=1.0, bias_var='bias'):
     """
     Spatial attention mask
