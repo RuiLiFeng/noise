@@ -73,9 +73,9 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         #                      dnnlib.make_run_dir_path('seed%04d-xvs.png' % seed), drange=[-1, 1])
         # misc.save_image_grid(adjust_range(np.sum(np.clip(-m_v, 0, 100), axis=1, keepdims=True)),
         #                      dnnlib.make_run_dir_path('seed%04d-mvs.png' % seed), drange=[-1, 1])
-        misc.save_image_grid(1/(1 + np.exp( -(np.sum(np.clip(-x_v, 0, 100), axis=1, keepdims=True)))),
+        misc.save_image_grid(1.0/(1 + np.exp(np.sum(x_v, axis=1, keepdims=True))),
                              dnnlib.make_run_dir_path('seed%04d-xvs.png' % seed), drange=[0, 1])
-        misc.save_image_grid(1/(1 + np.exp( -(np.sum(np.clip(-m_v, 0, 100), axis=1, keepdims=True)))),
+        misc.save_image_grid(1.0/(1 + np.exp(np.sum(m_v, axis=1, keepdims=True))),
                              dnnlib.make_run_dir_path('seed%04d-mvs.png' % seed), drange=[0, 1])
         # for id in range(x_v.shape[1]):
         #     PIL.Image.fromarray(adjust_range(x_v[0][id]), 'L').save(
