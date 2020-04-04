@@ -67,7 +67,7 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
         misc.save_image_grid(adjust_range(x_v).transpose([1, 0, 2, 3]),
                              dnnlib.make_run_dir_path('seed%04d-xv.png' % seed), drange=[-1, 1])
         misc.save_image_grid(adjust_range(m_v).transpose([1, 0, 2, 3]),
-                             dnnlib.make_run_dir_path('seed%04d-xv.png' % seed), drange=[-1, 1])
+                             dnnlib.make_run_dir_path('seed%04d-mv.png' % seed), drange=[-1, 1])
         # for id in range(x_v.shape[1]):
         #     PIL.Image.fromarray(adjust_range(x_v[0][id]), 'L').save(
         #         dnnlib.make_run_dir_path('seed%04d-xv%d.png' % (seed, id)))
