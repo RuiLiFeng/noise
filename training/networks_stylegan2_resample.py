@@ -429,6 +429,7 @@ def G_synthesis_stylegan2(
     dtype               = 'float32',    # Data type to use for activations and outputs.
     resample_kernel     = [1,3,3,1],    # Low-pass filter to apply when resampling activations. None = no filtering.
     fused_modconv       = True,         # Implement modulated_conv2d_layer() as a single fused op?
+    temperature         = 1.0,
     **_kwargs):                         # Ignore unrecognized keyword args.
 
     resolution_log2 = int(np.log2(resolution))
@@ -461,7 +462,8 @@ def G_synthesis_stylegan2(
         noise = noise * tf.cast(noise_strength, x.dtype)
 
         with tf.variable_scope('resampling'):
-            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.5))
+            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.0))
+            alpha = tf.nn.sigmoid(temperature * alpha)
             sp_att_mask = alpha + (1-alpha) * spatial_att(x)
             sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
             x += noise
