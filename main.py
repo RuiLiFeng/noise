@@ -33,7 +33,7 @@ _valid_configs = [
 
 #----------------------------------------------------------------------------
 
-def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, mirror_augment, metrics, max_images):
+def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, mirror_augment, metrics, max_images, resume_pkl, resume_kimg, resume_time):
     train     = EasyDict(run_func_name='training.training_loop.training_loop') # Options for training loop.
     G         = EasyDict(func_name='training.' + model + '.G_main')       # Options for generator network.
     D         = EasyDict(func_name='training.' + model + '.D_stylegan2')  # Options for discriminator network.
@@ -50,6 +50,9 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
     train.total_kimg = total_kimg
     train.mirror_augment = mirror_augment
     train.image_snapshot_ticks = train.network_snapshot_ticks = 10
+    train.resume_pkl = resume_pkl
+    train.resume_kimg = resume_kimg
+    train.resume_time = resume_time
     sched.G_lrate_base = sched.D_lrate_base = 0.002
     sched.minibatch_size_base = 32
     sched.minibatch_gpu_base = 4
@@ -173,6 +176,10 @@ def main():
     parser.add_argument('--mirror-augment', help='Mirror augment (default: %(default)s)', default=False, metavar='BOOL', type=_str_to_bool)
     parser.add_argument('--metrics', help='Comma-separated list of metrics or "none" (default: %(default)s)', default='fid50k,ppl_wend', type=_parse_comma_sep)
     parser.add_argument('--max-images', help='Total num of imgs used, use all if "none" (default: %(default)s)', default=None, type=int)
+    parser.add_argument('--resume-pkl', help='resume pkl', default=None)
+    parser.add_argument('--resume-kimg', help='resume pkl', default=None)
+    parser.add_argument('--resume-time', help='resume pkl', default=None)
+
 
     args = parser.parse_args()
 
