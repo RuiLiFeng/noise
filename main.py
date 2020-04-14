@@ -177,8 +177,8 @@ def main():
     parser.add_argument('--metrics', help='Comma-separated list of metrics or "none" (default: %(default)s)', default='fid50k,ppl_wend', type=_parse_comma_sep)
     parser.add_argument('--max-images', help='Total num of imgs used, use all if "none" (default: %(default)s)', default=None, type=int)
     parser.add_argument('--resume-pkl', help='resume pkl', default=None)
-    parser.add_argument('--resume-kimg', help='resume pkl', default=None, type=int)
-    parser.add_argument('--resume-time', help='resume pkl', default=None)
+    parser.add_argument('--resume-kimg', help='resume pkl', default=0.0, type=float)
+    parser.add_argument('--resume-time', help='resume pkl', default=0.0, type=float)
 
 
     args = parser.parse_args()
