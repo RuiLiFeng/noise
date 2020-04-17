@@ -462,8 +462,8 @@ def G_synthesis_stylegan2(
         noise = noise * tf.cast(noise_strength, x.dtype)
 
         with tf.variable_scope('resampling'):
-            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.0))
-            alpha = tf.nn.sigmoid(temperature * alpha)
+            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.5))
+            alpha = temperature * alpha
             sp_att_mask = alpha + (1-alpha) * spatial_att(x)
             sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
             x += noise
