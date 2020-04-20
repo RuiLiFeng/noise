@@ -745,10 +745,10 @@ def spatial_att(x):
     else:
         factor = x.shape[3].value / 16
         x_mask_l = get_weight(shape=[x.shape[2].value, x.shape[3].value / factor], weight_var='x_mask_l')
-        x_mask_r = get_weight(shape=[x.shape[3].value / factor, x.shape[3].value / factor], weight_var='x_mask_r')
+        x_mask_r = get_weight(shape=[x.shape[3].value / factor, x.shape[3].value], weight_var='x_mask_r')
         x_mask = tf.matmul(x_mask_l, x_mask_r)
         b_l = get_weight(shape=[x.shape[2].value, x.shape[3].value / factor], weight_var='b_l')
-        b_r = get_weight(shape=[x.shape[3].value / factor, x.shape[3].value / factor], weight_var='b_r')
+        b_r = get_weight(shape=[x.shape[3].value / factor, x.shape[3].value], weight_var='b_r')
         b = tf.matmul(b_l, b_r)
     att = x * x_mask + b
     return tf.tile(att, [1, fmaps, 1, 1])

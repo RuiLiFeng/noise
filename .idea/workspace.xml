@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="753" column="41" lean-forward="true" selection-start-line="753" selection-start-column="41" selection-end-line="753" selection-end-column="41" />
+            <state relative-caret-position="300">
+              <caret line="473" column="49" lean-forward="true" selection-start-line="473" selection-start-column="49" selection-end-line="473" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -271,16 +271,15 @@
       <workItem from="1587128205364" duration="2594000" />
       <workItem from="1587304248227" duration="608000" />
       <workItem from="1587317922173" duration="270000" />
-      <workItem from="1587359967958" duration="1533000" />
+      <workItem from="1587359967958" duration="1881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89333000" />
+    <option name="totallyTimeSpent" value="89681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24530831" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -296,8 +295,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3201133" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.30028328" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3186969" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.30028328" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -544,8 +543,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="753" column="41" lean-forward="true" selection-start-line="753" selection-start-column="41" selection-end-line="753" selection-end-column="41" />
+        <state relative-caret-position="300">
+          <caret line="473" column="49" lean-forward="true" selection-start-line="473" selection-start-column="49" selection-end-line="473" selection-end-column="49" />
         </state>
       </provider>
     </entry>
