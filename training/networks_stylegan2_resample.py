@@ -462,8 +462,8 @@ def G_synthesis_stylegan2(
         noise = noise * tf.cast(noise_strength, x.dtype)
 
         with tf.variable_scope('resampling'):
-            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.5))
-            alpha = temperature * alpha
+            alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.0))
+            alpha = tf.nn.sigmoid(temperature * alpha)
             sp_att_mask = alpha + (1-alpha) * spatial_att(x)
             sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
             x += noise
@@ -739,7 +739,16 @@ def spatial_att(x):
     fmaps = x.shape[1].value
     x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
     x = (adjust_range(x) + 1.0) / 2.0
-    x_mask = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='x_mask')
-    b = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='bias')
+    if x.shape[2].value < 64:
+        x_mask = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='x_mask')
+        b = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='bias')
+    else:
+        factor = x.shape[3].value / 16
+        x_mask_l = get_weight(shape=[x.shape[2].value, x.shape[3].value / factor], weight_var='x_mask_l')
+        x_mask_r = get_weight(shape=[x.shape[3].value / factor, x.shape[3].value / factor], weight_var='x_mask_r')
+        x_mask = tf.matmul(x_mask_l, x_mask_r)
+        b_l = get_weight(shape=[x.shape[2].value, x.shape[3].value / factor], weight_var='b_l')
+        b_r = get_weight(shape=[x.shape[3].value / factor, x.shape[3].value / factor], weight_var='b_r')
+        b = tf.matmul(b_l, b_r)
     att = x * x_mask + b
     return tf.tile(att, [1, fmaps, 1, 1])
