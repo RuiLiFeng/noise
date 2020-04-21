@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="747" column="80" selection-start-line="747" selection-start-column="80" selection-end-line="747" selection-end-column="80" />
+            <state relative-caret-position="-324">
+              <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
             </state>
           </provider>
         </entry>
@@ -128,7 +128,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="7" />
     <option name="y" value="7" />
     <option name="width" value="1940" />
@@ -270,15 +270,15 @@
       <workItem from="1587128205364" duration="2594000" />
       <workItem from="1587304248227" duration="608000" />
       <workItem from="1587317922173" duration="270000" />
-      <workItem from="1587359967958" duration="2915000" />
+      <workItem from="1587359967958" duration="3582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90715000" />
+    <option name="totallyTimeSpent" value="91382000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24530831" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -542,8 +542,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="747" column="80" selection-start-line="747" selection-start-column="80" selection-end-line="747" selection-end-column="80" />
+        <state relative-caret-position="-324">
+          <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
         </state>
       </provider>
     </entry>
