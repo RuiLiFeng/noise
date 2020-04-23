@@ -33,7 +33,7 @@ _valid_configs = [
 
 #----------------------------------------------------------------------------
 
-def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, mirror_augment, metrics, max_images, resume_pkl, resume_kimg, resume_time):
+def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, mirror_augment, metrics, max_images, resume_pkl, resume_kimg, resume_time, pr):
     train     = EasyDict(run_func_name='training.training_loop.training_loop') # Options for training loop.
     G         = EasyDict(func_name='training.' + model + '.G_main')       # Options for generator network.
     D         = EasyDict(func_name='training.' + model + '.D_stylegan2')  # Options for discriminator network.
@@ -101,6 +101,11 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
     if config_id in ['config-a', 'config-b', 'config-c'] or\
             model in ['networks_stylegan2_att', 'networks_stylegan2_satt', 'networks_stylegan2_base',
                       'networks_stylegan2_resample']:
+        G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
+
+    if pr:
+        G_loss = EasyDict(func_name='training.loss.G_logistic_ns_pathreg')
+    else:
         G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
 
     # Configs A-B: Disable lazy regularization.
@@ -179,7 +184,7 @@ def main():
     parser.add_argument('--resume-pkl', help='resume pkl', default=None)
     parser.add_argument('--resume-kimg', help='resume pkl', default=0.0, type=float)
     parser.add_argument('--resume-time', help='resume pkl', default=0.0, type=float)
-
+    parser.add_argument('--pr', help='Enable path length regularizer (default: %(default)s)', default=False, metavar='BOOL', type=_str_to_bool)
 
     args = parser.parse_args()
 
