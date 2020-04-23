@@ -103,10 +103,11 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
                       'networks_stylegan2_resample']:
         G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
 
-    if pr:
-        G_loss = EasyDict(func_name='training.loss.G_logistic_ns_pathreg')
-    else:
-        G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
+    if pr is not None:
+        if pr == 'true':
+            G_loss = EasyDict(func_name='training.loss.G_logistic_ns_pathreg')
+        elif pr == 'false':
+            G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
 
     # Configs A-B: Disable lazy regularization.
     if config_id in ['config-a', 'config-b']:
@@ -184,7 +185,7 @@ def main():
     parser.add_argument('--resume-pkl', help='resume pkl', default=None)
     parser.add_argument('--resume-kimg', help='resume pkl', default=0.0, type=float)
     parser.add_argument('--resume-time', help='resume pkl', default=0.0, type=float)
-    parser.add_argument('--pr', help='Enable path length regularizer (default: %(default)s)', default=False, metavar='BOOL', type=_str_to_bool)
+    parser.add_argument('--pr', help='Enable path length regularizer (default: %(default)s)', default=None)
 
     args = parser.parse_args()
 
