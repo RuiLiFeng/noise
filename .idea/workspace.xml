@@ -1,89 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="" />
+    <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/training/dcgan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="-1876">
+                    <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="-4555">
+                    <caret line="268" column="4" selection-start-line="268" selection-start-column="4" selection-end-line="268" selection-end-column="4" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4940">
-              <caret line="431" column="20" lean-forward="true" selection-start-line="431" selection-start-column="20" selection-end-line="431" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-              <folding>
-                <element signature="e#227#242#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metrics/linear_separability.py">
+        <entry file="file://$PROJECT_DIR$/training/dcgan.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1026">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metrics/precision_recall.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3591">
-              <caret line="196" column="51" selection-start-line="196" selection-start-column="51" selection-end-line="196" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_metrics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="22" column="66" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1862">
-              <caret line="106" column="25" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="25" />
-              <folding>
-                <element signature="e#227#242#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dataset_tool.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_noise_dis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+              <caret line="358" column="35" lean-forward="true" selection-start-line="358" selection-start-column="35" selection-end-line="358" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -93,7 +55,26 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run_generator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1729">
+              <caret line="106" column="25" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="25" />
+              <folding>
+                <element signature="e#227#242#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -113,16 +94,19 @@
         <option value="$PROJECT_DIR$/training/networks_stylegan2_satt.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_vis.py" />
         <option value="$PROJECT_DIR$/run_generator_visual.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_resample.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$USER_HOME$/Documents/WeChat Files/wxid_emz05gko7x5q22/FileStorage/File/2020-05/model.py" />
+        <option value="$PROJECT_DIR$/training/dcgan.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1789" />
-    <option name="y" value="142" />
-    <option name="width" value="1940" />
-    <option name="height" value="1040" />
+    <option name="x" value="-207" />
+    <option name="y" value="42" />
+    <option name="width" value="1937" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -173,15 +157,15 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/training" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\program\stylegan2-master\stylegan2-master" />
       <recent name="E:\program\stylegan2-master\stylegan2-master\training" />
+      <recent name="E:\program\stylegan2-master\stylegan2-master" />
       <recent name="D:\program\noise\noise\training" />
     </key>
   </component>
@@ -262,16 +246,23 @@
       <workItem from="1587317922173" duration="270000" />
       <workItem from="1587359967958" duration="3582000" />
       <workItem from="1587447331240" duration="263000" />
+      <workItem from="1587663608924" duration="739000" />
+      <workItem from="1587969156134" duration="603000" />
+      <workItem from="1588137846352" duration="627000" />
+      <workItem from="1588249373248" duration="1643000" />
+      <workItem from="1588320310961" duration="8819000" />
+      <workItem from="1588666775987" duration="16539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91645000" />
+    <option name="totallyTimeSpent" value="120615000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24865952" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26876676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -285,8 +276,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3186969" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.30028328" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.203966" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.27903682" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -301,30 +292,12 @@
     <SUITE FILE_PATH="coverage/stylegan2_master$main.coverage" NAME="main Coverage Results" MODIFIED="1584173150947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test_nvcc.cu">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/conda/Lib/argparse.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/argparse.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="64" column="21" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/perceptual_path_length.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/run_training.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -476,27 +449,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_att.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="21" column="77" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/metric_defaults.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -521,44 +477,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/training_loop.py">
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="269" column="85" selection-start-line="269" selection-start-column="85" selection-end-line="269" selection-end-column="85" />
-          <folding>
-            <element signature="e#256#274#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/linear_separability.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/precision_recall.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3591">
-          <caret line="196" column="51" selection-start-line="196" selection-start-column="51" selection-end-line="196" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_metrics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="22" column="66" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1862">
-          <caret line="106" column="25" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="25" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-7410">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -569,6 +491,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2623" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1653">
+          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/training_loop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4959">
+          <caret line="269" column="85" selection-start-line="269" selection-start-column="85" selection-end-line="269" selection-end-column="85" />
+          <folding>
+            <element signature="e#256#274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_noise_dis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -576,30 +523,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/loss.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/run_metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+        <state relative-caret-position="456">
+          <caret line="72" column="30" lean-forward="true" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$USER_HOME$/Documents/WeChat Files/wxid_emz05gko7x5q22/FileStorage/File/2020-05/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="57" lean-forward="true" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
+          <folding>
+            <element signature="e#7#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/linear_separability.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1064">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/metric_defaults.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/perceptual_path_length.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="98" column="59" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="e#227#242#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
+    <entry file="file://$PROJECT_DIR$/metrics/precision_recall.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4940">
-          <caret line="431" column="20" lean-forward="true" selection-start-line="431" selection-start-column="20" selection-end-line="431" selection-end-column="20" />
+        <state relative-caret-position="418">
+          <caret line="181" column="110" selection-start-line="181" selection-start-column="37" selection-end-line="181" selection-end-column="110" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2.py">
+    <entry file="file://$PROJECT_DIR$/metrics/frechet_inception_distance.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7410">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="19">
+          <caret line="31" column="79" selection-start-line="31" selection-start-column="79" selection-end-line="31" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/inception_score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="26" column="123" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dnnlib/tflib/ops/upfirdn_2d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="168" column="4" selection-start-line="168" selection-start-column="4" selection-end-line="168" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/conda/Lib/site-packages/tensorflow/python/ops/init_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="295" column="6" selection-start-line="295" selection-start-column="6" selection-end-line="295" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/conda/Lib/site-packages/tensorflow/python/ops/variable_scope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="1464" column="4" selection-start-line="1464" selection-start-column="4" selection-end-line="1464" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/loss.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1876">
+          <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4555">
+          <caret line="268" column="4" selection-start-line="268" selection-start-column="4" selection-end-line="268" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1729">
+          <caret line="106" column="25" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="25" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/dcgan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="358" column="35" lean-forward="true" selection-start-line="358" selection-start-column="35" selection-end-line="358" selection-end-column="35" />
         </state>
       </provider>
     </entry>
