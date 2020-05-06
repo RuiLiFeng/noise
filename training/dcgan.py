@@ -186,6 +186,7 @@ def G_main(
 
     # Setup components.
     if 'synthesis' not in components:
+        print(synthesis_func)
         components.synthesis = tflib.Network('G_synthesis', func_name=globals()[synthesis_func], **kwargs)
     num_layers = components.synthesis.input_shape[1]
     dlatent_size = components.synthesis.input_shape[2]
@@ -238,6 +239,7 @@ def G_main(
     if 'lod' in components.synthesis.vars:
         deps.append(tf.assign(components.synthesis.vars['lod'], lod_in))
     with tf.control_dependencies(deps):
+        print(components.synthesis.scope)
         images_out = components.synthesis.get_output_for(dlatents, is_training=is_training, force_clean_graph=is_template_graph, **kwargs)
 
     # Return requested outputs.
@@ -320,6 +322,7 @@ def G_synthesis_stylegan2(
     # Primary inputs.
     dlatents_in.set_shape([None, num_layers, dlatent_size])
     dlatents_in = tf.cast(dlatents_in, dtype)
+
 
     # Noise inputs.
     noise_inputs = []
