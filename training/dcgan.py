@@ -188,7 +188,7 @@ def G_main(
     if 'synthesis' not in components:
         components.synthesis = tflib.Network('G_synthesis', func_name=globals()[synthesis_func], **kwargs)
     num_layers = components.synthesis.input_shape[1]
-    dlatent_size = components.synthesis.input_shape[1]
+    dlatent_size = components.synthesis.input_shape[2]
     if 'mapping' not in components:
         components.mapping = tflib.Network('G_mapping', func_name=globals()[mapping_func], dlatent_broadcast=num_layers, **kwargs)
 
@@ -282,6 +282,11 @@ def G_mapping(
             y = tf.matmul(labels_in, tf.cast(w, dtype))
             x = tf.concat([x, y], axis=1)
 
+    # Broadcast.
+    if dlatent_broadcast is not None:
+        with tf.variable_scope('Broadcast'):
+            x = tf.tile(x[:, np.newaxis], [1, dlatent_broadcast, 1])
+
     # Output.
     assert x.dtype == tf.as_dtype(dtype)
     return tf.identity(x, name='dlatents_out')
@@ -313,7 +318,7 @@ def G_synthesis_stylegan2(
     images_out = None
 
     # Primary inputs.
-    dlatents_in.set_shape([None, dlatent_size])
+    dlatents_in.set_shape([None, num_layers, dlatent_size])
     dlatents_in = tf.cast(dlatents_in, dtype)
 
     # Noise inputs.
@@ -324,8 +329,11 @@ def G_synthesis_stylegan2(
             tf.get_variable('noise%d' % res, shape=shape, initializer=tf.initializers.random_normal(),
                             trainable=False))
 
+    x = dlatents_in[:, 0]
+    print(x)
+
     with tf.variable_scope('4x4'):
-        x = tf.layers.dense(dlatents_in, 64 * 8 * 16, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
+        x = tf.layers.dense(x, 64 * 8 * 16, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
         x = tf.layers.batch_normalization(x)
         x = tf.reshape(x, [-1, 64*8, 4, 4])
         x = act(x)
