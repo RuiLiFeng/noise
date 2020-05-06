@@ -195,3 +195,26 @@ def G_logistic_ns_pathreg(G, D, opt, training_set, minibatch_size, pl_minibatch_
     return loss, reg
 
 #----------------------------------------------------------------------------
+
+
+def G_loss_dcgan(G, D, opt, training_set, minibatch_size, **kwargs):
+    _ = opt
+    latents = tf.random_normal([minibatch_size] + G.input_shapes[0][1:])
+    labels = training_set.get_random_labels_tf(minibatch_size)
+    fake_images_out = G.get_output_for(latents, labels, is_training=True)
+    fake_scores_out = D.get_output_for(fake_images_out, labels, is_training=True)
+    loss = tf.log(1 - fake_scores_out)
+    return loss, None
+
+
+def D_loss_dcgan(G, D, opt, training_set, minibatch_size, reals, labels):
+    _ = opt, training_set
+    latents = tf.random_normal([minibatch_size] + G.input_shapes[0][1:])
+    fake_images_out = G.get_output_for(latents, labels, is_training=True)
+    real_scores_out = D.get_output_for(reals, labels, is_training=True)
+    fake_scores_out = D.get_output_for(fake_images_out, labels, is_training=True)
+    real_scores_out = autosummary('Loss/scores/real', real_scores_out)
+    fake_scores_out = autosummary('Loss/scores/fake', fake_scores_out)
+    loss = -tf.log(1 - fake_scores_out) # -log(1-sigmoid(fake_scores_out))
+    loss += -tf.log(real_scores_out) # -log(sigmoid(real_scores_out)) # pylint: disable=invalid-unary-operand-type
+    return loss, None

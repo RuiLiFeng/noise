@@ -127,7 +127,8 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
         sched.minibatch_gpu_base = 32  # (default)
         G_opt = EasyDict(beta1=0.5, beta2=0.99, epsilon=1e-8)  # Options for generator optimizer.
         D_opt = EasyDict(beta1=0.5, beta2=0.99, epsilon=1e-8)  # Options for discriminator optimizer.
-        G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
+        G_loss = EasyDict(func_name='training.loss.G_loss_dcgan')
+        D_loss = EasyDict(func_name='training.loss.D_loss_dcgan')  # Options for discriminator loss.
         if 'add' in model:
             G.noise_style = 'add'
         elif 're' in model:
