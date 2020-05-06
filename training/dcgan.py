@@ -437,7 +437,6 @@ def D_stylegan2(
     with tf.variable_scope('4x4'):
         x = tf.layers.dense(tf.reshape(x, [-1, np.prod(x.shape[1:])]), 1,
                             kernel_initializer=tf.random_normal_initializer(stddev=0.02))
-        x = tf.sigmoid(x)
 
     scores_out = x
     # Output.
