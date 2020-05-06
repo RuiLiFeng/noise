@@ -121,6 +121,16 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
     if gamma is not None:
         D_loss.gamma = gamma
 
+    if 'dcgan' in model:
+        sched.G_lrate_base = sched.D_lrate_base = 0.0002
+        sched.minibatch_size_base = 128
+        sched.minibatch_gpu_base = 32  # (default)
+        G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
+        if 'add' in model:
+            G.noise_style = 'add'
+        elif 're' in model:
+            G.noise_style = 're'
+
     sc.submit_target = dnnlib.SubmitTarget.LOCAL
     sc.local.do_not_copy_source_files = True
     kwargs = EasyDict(train)

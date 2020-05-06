@@ -330,7 +330,6 @@ def G_synthesis_stylegan2(
                             trainable=False))
 
     x = dlatents_in[:, 0]
-    print(x)
 
     with tf.variable_scope('4x4'):
         x = tf.layers.dense(x, 64 * 8 * 16, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
