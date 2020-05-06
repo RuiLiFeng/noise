@@ -230,8 +230,7 @@ def training_loop(
                 if D_reg is not None: D_reg_opt.register_gradients(tf.reduce_mean(D_reg * D_reg_interval), D_gpu.trainables)
             G_opt.register_gradients(tf.reduce_mean(G_loss), G_gpu.trainables)
             D_opt.register_gradients(tf.reduce_mean(D_loss), D_gpu.trainables)
-            print(G_gpu.trainables)
-            print(D_gpu.trainables)
+
 
     # Setup training ops.
     data_fetch_op = tf.group(*data_fetch_ops)
@@ -288,10 +287,10 @@ def training_loop(
 
             # Fast path without gradient accumulation.
             if len(rounds) == 1:
-                tflib.run([G_train_op, data_fetch_op], feed_dict)
+                tflib.run([D_train_op, data_fetch_op], feed_dict)
                 if run_G_reg:
                     tflib.run(G_reg_op, feed_dict)
-                tflib.run([D_train_op, Gs_update_op], feed_dict)
+                tflib.run([G_train_op, Gs_update_op], feed_dict)
                 if run_D_reg:
                     tflib.run(D_reg_op, feed_dict)
 
