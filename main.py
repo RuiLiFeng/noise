@@ -127,6 +127,7 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
         sched.minibatch_gpu_base = 32  # (default)
         G.func_name = 'training.dcgan.G_main'
         D.func_name = 'training.dcgan.D_stylegan2'
+        train.run_func_name = 'training.dcgan_loop.training_loop'
         G_opt = EasyDict(beta1=0.5, beta2=0.99, epsilon=1e-8)  # Options for generator optimizer.
         D_opt = EasyDict(beta1=0.5, beta2=0.99, epsilon=1e-8)  # Options for discriminator optimizer.
         G_loss = EasyDict(func_name='training.loss.G_loss_dcgan')
