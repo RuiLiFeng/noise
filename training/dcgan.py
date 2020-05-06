@@ -186,7 +186,6 @@ def G_main(
 
     # Setup components.
     if 'synthesis' not in components:
-        print(synthesis_func)
         components.synthesis = tflib.Network('G_synthesis', func_name=globals()[synthesis_func], **kwargs)
     num_layers = components.synthesis.input_shape[1]
     dlatent_size = components.synthesis.input_shape[2]
@@ -239,7 +238,6 @@ def G_main(
     if 'lod' in components.synthesis.vars:
         deps.append(tf.assign(components.synthesis.vars['lod'], lod_in))
     with tf.control_dependencies(deps):
-        print(components.synthesis.scope)
         images_out = components.synthesis.get_output_for(dlatents, is_training=is_training, force_clean_graph=is_template_graph, **kwargs)
 
     # Return requested outputs.
@@ -332,9 +330,8 @@ def G_synthesis_stylegan2(
             tf.get_variable('noise%d' % res, shape=shape, initializer=tf.initializers.random_normal(),
                             trainable=False))
 
-    x = dlatents_in[:, 0]
-
     with tf.variable_scope('4x4'):
+        x = dlatents_in[:, 0]
         x = tf.layers.dense(x, 64 * 8 * 16, kernel_initializer=tf.random_normal_initializer(stddev=0.02))
         x = tf.layers.batch_normalization(x)
         x = tf.reshape(x, [-1, 64*8, 4, 4])
