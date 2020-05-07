@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/dcgan.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/dcgan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/dcgan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2437">
-              <caret line="354" column="71" lean-forward="true" selection-start-line="354" selection-start-column="71" selection-end-line="354" selection-end-column="71" />
+            <state relative-caret-position="376">
+              <caret line="495" column="57" lean-forward="true" selection-start-line="495" selection-start-column="57" selection-end-line="495" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -110,14 +109,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="119" lean-forward="true" selection-start-line="119" selection-end-line="119" />
+            <state relative-caret-position="282">
+              <caret line="126" column="50" lean-forward="true" selection-start-line="126" selection-start-column="50" selection-end-line="126" selection-end-column="50" />
               <folding>
                 <element signature="e#227#242#0" expanded="true" />
-                <marker date="1588835461881" expanded="true" signature="6285:6445" ph="..." />
+                <marker date="1588836497728" expanded="true" signature="6286:6446" ph="..." />
               </folding>
             </state>
           </provider>
@@ -171,8 +170,8 @@
         <option value="$PROJECT_DIR$/training/training_loop.py" />
         <option value="$PROJECT_DIR$/training/dcgan_loop.py" />
         <option value="$PROJECT_DIR$/training/loss.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/training/dcgan.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -325,15 +324,16 @@
       <workItem from="1588137846352" duration="627000" />
       <workItem from="1588249373248" duration="1643000" />
       <workItem from="1588320310961" duration="8819000" />
-      <workItem from="1588666775987" duration="36821000" />
+      <workItem from="1588666775987" duration="37604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140897000" />
+    <option name="totallyTimeSpent" value="141680000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26876676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -349,8 +349,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23796034" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.27903682" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.23796034" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.27903682" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -708,21 +708,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/training/dcgan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="119" lean-forward="true" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-            <marker date="1588835461881" expanded="true" signature="6285:6445" ph="..." />
-          </folding>
+        <state relative-caret-position="376">
+          <caret line="495" column="57" lean-forward="true" selection-start-line="495" selection-start-column="57" selection-end-line="495" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/dcgan.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2437">
-          <caret line="354" column="71" lean-forward="true" selection-start-line="354" selection-start-column="71" selection-end-line="354" selection-end-column="71" />
+        <state relative-caret-position="282">
+          <caret line="126" column="50" lean-forward="true" selection-start-line="126" selection-start-column="50" selection-end-line="126" selection-end-column="50" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+            <marker date="1588836497728" expanded="true" signature="6286:6446" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
