@@ -277,7 +277,7 @@ def training_loop(
 
         # Run training ops.
         feed_dict = {lod_in: sched.lod, lrate_in: sched.G_lrate, minibatch_size_in: sched.minibatch_size, minibatch_gpu_in: sched.minibatch_gpu}
-        for _repeat in range(minibatch_repeats):
+        for _repeat in range(1):
             rounds = range(0, sched.minibatch_size, sched.minibatch_gpu * num_gpus)
             run_G_reg = (lazy_regularization and running_mb_counter % G_reg_interval == 0)
             run_D_reg = (lazy_regularization and running_mb_counter % D_reg_interval == 0)
@@ -292,6 +292,9 @@ def training_loop(
                 tflib.run([G_train_op, Gs_update_op], feed_dict)
                 if run_G_reg:
                     tflib.run(G_reg_op, feed_dict)
+                tflib.run([G_train_op, Gs_update_op], feed_dict)
+                if run_G_reg:
+                    tflib.run(G_reg_op, feed_dict)
 
             # Slow path with gradient accumulation.
             else:
@@ -303,8 +306,11 @@ def training_loop(
                         tflib.run(D_reg_op, feed_dict)
                 for _round in rounds:
                     tflib.run(G_train_op, feed_dict)
+                    tflib.run(G_train_op, feed_dict)
+
                 if run_G_reg:
                     for _round in rounds:
+                        tflib.run(G_reg_op, feed_dict)
                         tflib.run(G_reg_op, feed_dict)
                 tflib.run(Gs_update_op, feed_dict)
 
