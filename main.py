@@ -131,7 +131,7 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
         G_opt = EasyDict(beta1=0.5, beta2=0.99, epsilon=1e-8)  # Options for generator optimizer.
         D_opt = EasyDict(beta1=0.5, beta2=0.99, epsilon=1e-8)  # Options for discriminator optimizer.
         G_loss.func_name = 'training.loss.G_logistic_ns'
-        D_loss.func_name = 'training.loss.G_logistic'
+        D_loss.func_name = 'training.loss.D_logistic'
 
         # G_loss = EasyDict(func_name='training.loss.G_loss_dcgan')
         # D_loss = EasyDict(func_name='training.loss.D_loss_dcgan')  # Options for discriminator loss.
