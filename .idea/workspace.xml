@@ -49,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/loss.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3549">
@@ -109,14 +109,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="131" column="81" lean-forward="true" selection-start-line="131" selection-start-column="81" selection-end-line="131" selection-end-column="81" />
+            <state relative-caret-position="73">
+              <caret line="124" column="54" lean-forward="true" selection-start-line="124" selection-start-column="54" selection-end-line="124" selection-end-column="54" />
               <folding>
                 <element signature="e#227#242#0" expanded="true" />
-                <marker date="1588834321909" expanded="true" signature="6303:6463" ph="..." />
+                <marker date="1588834615795" expanded="true" signature="6241:6401" ph="..." />
               </folding>
             </state>
           </provider>
@@ -175,7 +175,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="72" />
     <option name="y" value="38" />
     <option name="width" value="1937" />
@@ -324,16 +324,15 @@
       <workItem from="1588137846352" duration="627000" />
       <workItem from="1588249373248" duration="1643000" />
       <workItem from="1588320310961" duration="8819000" />
-      <workItem from="1588666775987" duration="35451000" />
+      <workItem from="1588666775987" duration="35760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139527000" />
+    <option name="totallyTimeSpent" value="139836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26876676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -708,21 +707,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="131" column="81" lean-forward="true" selection-start-line="131" selection-start-column="81" selection-end-line="131" selection-end-column="81" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-            <marker date="1588834321909" expanded="true" signature="6303:6463" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/loss.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3549">
           <caret line="198" selection-start-line="198" selection-end-line="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="124" column="54" lean-forward="true" selection-start-line="124" selection-start-column="54" selection-end-line="124" selection-end-column="54" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+            <marker date="1588834615795" expanded="true" signature="6241:6401" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
