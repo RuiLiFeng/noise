@@ -336,7 +336,7 @@ def G_synthesis_stylegan2(
         x = tf.layers.batch_normalization(x, gamma_initializer=tf.random_normal_initializer(mean=1.0, stddev=0.02))
         x = tf.reshape(x, [-1, 64*8, 4, 4])
         x = act(x)
-        x = add_noise(x, noise_style, randomize_noise, noise_inputs)
+        x = add_noise(x, noise_style, randomize_noise, noise_inputs, 0)
 
     with tf.variable_scope('8x8'):
         x = tf.layers.conv2d_transpose(x, 64 * 4, 4, 2, padding='same', use_bias=False,
@@ -344,7 +344,7 @@ def G_synthesis_stylegan2(
                                        data_format='channels_first')
         x = tf.layers.batch_normalization(x, axis=1, gamma_initializer=tf.random_normal_initializer(mean=1.0, stddev=0.02))
         x = act(x)
-        x = add_noise(x, noise_style, randomize_noise, noise_inputs)
+        x = add_noise(x, noise_style, randomize_noise, noise_inputs, 1)
 
     with tf.variable_scope('16x16'):
         x = tf.layers.conv2d_transpose(x, 64 * 2, 4, 2, padding='same', use_bias=False,
@@ -352,7 +352,7 @@ def G_synthesis_stylegan2(
                                        data_format='channels_first')
         x = tf.layers.batch_normalization(x, axis=1, gamma_initializer=tf.random_normal_initializer(mean=1.0, stddev=0.02))
         x = act(x)
-        x = add_noise(x, noise_style, randomize_noise, noise_inputs)
+        x = add_noise(x, noise_style, randomize_noise, noise_inputs, 2)
 
     with tf.variable_scope('32x32'):
         x = tf.layers.conv2d_transpose(x, 64 * 1, 4, 2, padding='same', use_bias=False,
@@ -360,7 +360,7 @@ def G_synthesis_stylegan2(
                                        data_format='channels_first')
         x = tf.layers.batch_normalization(x, axis=1, gamma_initializer=tf.random_normal_initializer(mean=1.0, stddev=0.02))
         x = act(x)
-        x = add_noise(x, noise_style, randomize_noise, noise_inputs)
+        x = add_noise(x, noise_style, randomize_noise, noise_inputs, 3)
 
     with tf.variable_scope('64x64'):
         x = tf.layers.conv2d_transpose(x, 3, 4, 2, padding='same', use_bias=False,
@@ -485,7 +485,7 @@ def spatial_att(x):
     return tf.tile(att, [1, fmaps, 1, 1])
 
 
-def add_noise(x, noise_style, randomize_noise, noise_inputs):
+def add_noise(x, noise_style, randomize_noise, noise_inputs, layer_idx):
     if noise_style is not None:
         if randomize_noise:
             noise = tf.random_normal([tf.shape(x)[0], 1, x.shape[2], x.shape[3]], dtype=x.dtype)
