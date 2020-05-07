@@ -122,7 +122,7 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
         D_loss.gamma = gamma
 
     if 'dcgan' in model:
-        sched.G_lrate_base = sched.D_lrate_base = 0.0002
+        sched.G_lrate_base = sched.D_lrate_base = 0.002
         sched.minibatch_size_base = 128
         sched.minibatch_gpu_base = 32  # (default)
         G.func_name = 'training.dcgan.G_main'
