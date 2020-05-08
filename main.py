@@ -139,6 +139,16 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
             G.noise_style = 'add'
         elif 're' in model:
             G.noise_style = 're'
+        if 'church' in dataset:
+            G.clip_style = 'church'
+        elif 'cat' in dataset:
+            G.clip_style = 'cat'
+
+    if model in ['networks_stylegan2_resample']:
+        if 'church' in dataset:
+            G.clip_style = 'church'
+        elif 'cat' in dataset:
+            G.clip_style = 'cat'
 
     sc.submit_target = dnnlib.SubmitTarget.LOCAL
     sc.local.do_not_copy_source_files = True

@@ -429,6 +429,7 @@ def G_synthesis_stylegan2(
     dtype               = 'float32',    # Data type to use for activations and outputs.
     resample_kernel     = [1,3,3,1],    # Low-pass filter to apply when resampling activations. None = no filtering.
     fused_modconv       = True,         # Implement modulated_conv2d_layer() as a single fused op?
+    clip_style          = 'ffhq',
     **_kwargs):                         # Ignore unrecognized keyword args.
 
     resolution_log2 = int(np.log2(resolution))
@@ -462,7 +463,7 @@ def G_synthesis_stylegan2(
 
         with tf.variable_scope('resampling'):
             alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.5))
-            sp_att_mask = alpha + (1-alpha) * spatial_att(x)
+            sp_att_mask = alpha + (1-alpha) * spatial_att(x, clip_style)
             sp_att_mask *= tf.rsqrt(tf.reduce_mean(tf.square(sp_att_mask), axis=[2, 3], keepdims=True) + 1e-8)
             x += noise
             x = x * sp_att_mask
@@ -728,14 +729,22 @@ def adjust_range(x):
         return x
 
 
-def spatial_att(x):
+def spatial_att(x, clip_style):
     """
     Spatial attention mask
     :param x: [NCHW]
+    :param clip_style:
     :return: None negative mask tensor [NCHW]
     """
     fmaps = x.shape[1].value
-    x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
+    if clip_style == 'ffhq':
+        x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
+    elif clip_style == 'cat':
+        x = tf.reduce_sum(x, axis=1, keepdims=True)
+    elif clip_style == 'church':
+        x = tf.reduce_max(-x, axis=1, keepdims=True)
+    else:
+        raise ValueError('Unsupported clip style %s' % clip_style)
     x = (adjust_range(x) + 1.0) / 2.0
     x_mask = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='x_mask')
     b = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='bias')
