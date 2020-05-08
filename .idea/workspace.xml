@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_generator_visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_generator_visual.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9595">
-              <caret line="510" column="73" selection-start-line="510" selection-start-column="73" selection-end-line="510" selection-end-column="73" />
+            <state relative-caret-position="1128">
+              <caret line="510" column="64" lean-forward="true" selection-start-line="510" selection-start-column="64" selection-end-line="510" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -42,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="301">
+              <caret line="78" column="19" lean-forward="true" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
               <folding>
                 <element signature="e#227#242#0" expanded="true" />
               </folding>
@@ -132,7 +133,6 @@
       <list>
         <option value="$PROJECT_DIR$/training/networks_stylegan2_att.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_satt.py" />
-        <option value="$PROJECT_DIR$/run_generator_visual.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_resample.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$USER_HOME$/Documents/WeChat Files/wxid_emz05gko7x5q22/FileStorage/File/2020-05/model.py" />
@@ -146,6 +146,7 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/training/dcgan.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_vis.py" />
+        <option value="$PROJECT_DIR$/run_generator_visual.py" />
       </list>
     </option>
   </component>
@@ -300,12 +301,12 @@
       <workItem from="1588320310961" duration="8819000" />
       <workItem from="1588666775987" duration="41193000" />
       <workItem from="1588917773492" duration="2096000" />
-      <workItem from="1588924922713" duration="337000" />
+      <workItem from="1588924922713" duration="787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147702000" />
+    <option name="totallyTimeSpent" value="148152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
@@ -635,13 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9595">
-          <caret line="510" column="73" selection-start-line="510" selection-start-column="73" selection-end-line="510" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -684,10 +678,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1128">
+          <caret line="510" column="64" lean-forward="true" selection-start-line="510" selection-start-column="64" selection-end-line="510" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="301">
+          <caret line="78" column="19" lean-forward="true" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
           <folding>
             <element signature="e#227#242#0" expanded="true" />
           </folding>
