@@ -84,7 +84,7 @@ def clip(x, style):
     elif style == 'church':
         return np.max(x, 1, keepdims=True)
     elif style == 'cat':
-        return adjust_range(np.sum(x, axis=1, keepdims=True)) + adjust_range(np.sum(np.clip(-x, 0, 10000), axis=1, keepdims=True))
+        return np.sum(np.abs(x), axis=1, keepdims=True)
     else:
         return np.sum(-x, axis=1, keepdims=True)
 
