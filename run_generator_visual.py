@@ -79,10 +79,12 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
 def clip(x, style):
     if style == 'ffhq':
         return np.sum(np.clip(-x, 0, 10000), axis=1, keepdims=True)
-    elif style == 'cat':
+    elif style == 'church':
         return np.max(x, 1, keepdims=True)
+    elif style == 'cat':
+        return np.sum(-x, axis=1, keepdims=True)
     else:
-        return np.sum(x, axis=1, keepdims=True)
+        return np.max(-x, axis=1, keepdims=True)
 
 
 #----------------------------------------------------------------------------

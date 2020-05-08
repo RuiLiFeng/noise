@@ -477,7 +477,8 @@ def spatial_att(x):
     :return: None negative mask tensor [NCHW]
     """
     fmaps = x.shape[1].value
-    x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
+    # x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
+    x = tf.reduce_sum(x, axis=1, keepdims=True)
     x = (adjust_range(x) + 1.0) / 2.0
     with tf.variable_scope('x_mask'):
         x_mask = get_weight(shape=[x.shape[2].value, x.shape[3].value])
