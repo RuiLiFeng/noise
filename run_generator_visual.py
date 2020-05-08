@@ -82,9 +82,9 @@ def clip(x, style):
     elif style == 'church':
         return np.max(x, 1, keepdims=True)
     elif style == 'cat':
-        return np.sum(np.clip(-x, 0, 10000), axis=1, keepdims=True)
+        return np.sum(np.clip(x, 0, 10000), axis=1, keepdims=True)
     else:
-        return np.max(np.clip(-x, 0, 10000), axis=1, keepdims=True)
+        return np.max(np.clip(x, 0, 10000), axis=1, keepdims=True)
 
 
 #----------------------------------------------------------------------------
