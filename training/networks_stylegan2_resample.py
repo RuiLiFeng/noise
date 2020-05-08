@@ -740,7 +740,7 @@ def spatial_att(x, clip_style):
     if clip_style == 'ffhq':
         x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
     elif clip_style == 'cat':
-        x = tf.reduce_sum(x, axis=1, keepdims=True)
+        x = tf.reduce_sum(tf.abs(x), axis=1, keepdims=True)
     elif clip_style == 'church':
         x = tf.reduce_max(-x, axis=1, keepdims=True)
     else:
