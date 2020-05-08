@@ -70,10 +70,19 @@ def generate_images(network_pkl, seeds, truncation_psi, data_dir=None, dataset_n
                              dnnlib.make_run_dir_path('seed%04d-xv.png' % seed), drange=[-1, 1])
         misc.save_image_grid(adjust_range(m_v).transpose([1, 0, 2, 3]),
                              dnnlib.make_run_dir_path('seed%04d-mv.png' % seed), drange=[-1, 1])
-        misc.save_image_grid(adjust_range(np.sum(np.clip(-x_v, 0, 10000), axis=1, keepdims=True)),
+        misc.save_image_grid(adjust_range(clip(x_v, 'cat')),
                              dnnlib.make_run_dir_path('seed%04d-xvs.png' % seed), drange=[-1, 1])
         misc.save_image_grid(adjust_range(np.sum(np.clip(-m_v, 0, 10000), axis=1, keepdims=True)),
                              dnnlib.make_run_dir_path('seed%04d-mvs.png' % seed), drange=[-1, 1])
+
+
+def clip(x, style):
+    if style == 'ffhq':
+        return np.sum(np.clip(-x, 0, 10000), axis=1, keepdims=True)
+    elif style == 'cat':
+        return np.sum(np.abs(x), axis=1, keepdims=True)
+    else:
+        return np.sum(x, axis=1, keepdims=True)
 
 
 #----------------------------------------------------------------------------
