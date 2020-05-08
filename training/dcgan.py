@@ -479,8 +479,10 @@ def spatial_att(x):
     fmaps = x.shape[1].value
     x = tf.reduce_sum(tf.nn.relu(-x), axis=1, keepdims=True)
     x = (adjust_range(x) + 1.0) / 2.0
-    x_mask = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='x_mask')
-    b = get_weight(shape=[x.shape[2].value, x.shape[3].value], weight_var='bias')
+    with tf.variable_scope('x_mask'):
+        x_mask = get_weight(shape=[x.shape[2].value, x.shape[3].value])
+    with tf.variable_scope('bias'):
+        b = get_weight(shape=[x.shape[2].value, x.shape[3].value])
     att = x * x_mask + b
     return tf.tile(att, [1, fmaps, 1, 1])
 
