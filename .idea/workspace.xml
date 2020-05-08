@@ -8,28 +8,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="437">
-                    <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
-                    <folding>
-                      <element signature="e#227#242#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -42,19 +20,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="18" selection-start-line="14" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_vis.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="9595">
               <caret line="510" column="64" selection-start-line="510" selection-start-column="64" selection-end-line="510" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+              <folding>
+                <element signature="e#227#242#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataset_tool.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-9158">
@@ -326,16 +307,15 @@
       <workItem from="1588666775987" duration="41193000" />
       <workItem from="1588917773492" duration="2096000" />
       <workItem from="1588924922713" duration="6597000" />
-      <workItem from="1588954656016" duration="2447000" />
+      <workItem from="1588954656016" duration="2695000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156409000" />
+    <option name="totallyTimeSpent" value="156657000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19436997" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -690,13 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/dcgan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="488" column="37" lean-forward="true" selection-start-line="488" selection-start-column="37" selection-end-line="488" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_resample.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4861">
@@ -711,10 +684,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/training/dcgan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="488" column="37" lean-forward="true" selection-start-line="488" selection-start-column="37" selection-end-line="488" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
-          <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
+          <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
           <folding>
             <element signature="e#227#242#0" expanded="true" />
           </folding>
