@@ -508,7 +508,7 @@ def G_synthesis_stylegan2(
     images_out = y
 
     assert images_out.dtype == tf.as_dtype(dtype)
-    return (tf.identity(images_out, name='images_out'),) + visual_array[12]
+    return (tf.identity(images_out, name='images_out'),) + visual_array[9]
 
 #----------------------------------------------------------------------------
 # Original StyleGAN discriminator.
