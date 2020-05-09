@@ -145,9 +145,7 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
             G.clip_style = 'cat'
 
     if model in ['networks_stylegan2_resample']:
-        if 'church' in dataset:
-            G.clip_style = 'church'
-        elif 'cat' in dataset:
+        if 'cat' in dataset:
             G.clip_style = 'cat'
 
     sc.submit_target = dnnlib.SubmitTarget.LOCAL
