@@ -52,7 +52,7 @@ def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
     with tf.variable_scope('mse_loss'):
         mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
     with tf.variable_scope('perceptual_loss'):
-        pcep_loss = tf.reduce_sum(vgg.get_ouput_for(img_in, synth_img))
+        pcep_loss = tf.reduce_sum(vgg.get_output_for(img_in, synth_img))
     loss = mse_loss + pcep_loss
     with tf.control_dependencies([loss]):
         train_op = opt.minimize(loss, var_list=[dlatent])
