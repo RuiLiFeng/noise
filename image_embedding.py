@@ -17,6 +17,7 @@ def read_image(img):
     I = PIL.Image.open(img)
     I = I.convert('RGB')
     I = np.array(I, np.float32) / 255.0
+    print(I.shape)
     if I.shape[-1] == 3:
         I.transpose([2, 0, 1])
     return I
