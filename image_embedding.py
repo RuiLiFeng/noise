@@ -93,9 +93,10 @@ def main():
     tflib.init_tf()
     _, _, G = pretrained_networks.load_networks(args.network)
     # vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
+    tf.keras.backend.set_image_data_format('channels_first')
     vgg = tf.keras.applications.VGG16(include_top=False, input_shape=(3, 128, 128),
                                       weights='/gdata2/fengrl/metrics/vgg.h5',
-                                      pooling=None, data_format='channels_first')
+                                      pooling=None)
 
     imgs = read_images(args.src_dir)
 
