@@ -26,7 +26,8 @@ def read_images(src_dir):
     imgs = []
     for i,j,k in os.walk(src_dir):
         for e in k:
-            imgs.append(read_image(os.path.join(i, e)))
+            if e.endswith('.png'):
+                imgs.append(read_image(os.path.join(i, e)))
     return imgs
 
 
@@ -45,19 +46,26 @@ def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
     m_loss_list = []
     dl_list = []
     si_list = []
-    rnd = np.random.RandomState(seed)
-    tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars})  # [height, width]
     synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
     synth_img = (synth_img + 1.0) / 2.0
     with tf.variable_scope('mse_loss'):
         mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
     with tf.variable_scope('perceptual_loss'):
-        pcep_loss = tf.reduce_sum(vgg.get_output_for(img_in, synth_img))
+        vgg_in = tf.concat([img_in, synth_img])
+        _ = vgg(vgg_in)
+        h1 = vgg.get_layer('block1_conv1').output
+        h2 = vgg.get_layer('block1_conv2').output
+        h3 = vgg.get_layer('block3_conv2').output
+        h4 = vgg.get_layer('block4_conv2').output
+        pcep_loss = tf.reduce_mean(tf.square(h1[0] - h1[1])) + tf.reduce_mean(tf.square(h2[0] - h2[1])) + \
+                    tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = mse_loss + pcep_loss
     with tf.control_dependencies([loss]):
         train_op = opt.minimize(loss, var_list=[dlatent])
 
     tflib.init_uninitialized_vars()
+    rnd = np.random.RandomState(seed)
+    tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars})  # [height, width]
     for i in range(iteration):
         loss_, p_loss_, m_loss_, dl_, si_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, train_op])
         loss_list.append(loss_)
@@ -77,13 +85,17 @@ def main():
     parser.add_argument('--src_dir', default="source_image/")
     parser.add_argument('--network', default="weight_files/pytorch/karras2019stylegan-ffhq-1024x1024.pt", type=str)
     parser.add_argument('--iteration', default=1000, type=int)
+    parser.add_argument('--result_dir', default='/gdata2/fengrl/inverse')
 
     args = parser.parse_args()
 
     print('Loading networks from "%s"...' % args.network)
     tflib.init_tf()
     _, _, G = pretrained_networks.load_networks(args.network)
-    vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
+    # vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
+    vgg = tf.keras.applications.VGG16(include_top=False, input_shape=[3, 128, 128],
+                                      weights='/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl',
+                                      pooling=None, classifier_activation='softmax')
 
     imgs = read_images(args.src_dir)
 
@@ -92,7 +104,8 @@ def main():
     for img in imgs:
         img = np.expand_dims(img, 0)
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration, vgg)
-        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.src_dir, 'si.png'), drange=[0, 1])
+        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si.png'), drange=[0, 1])
+        break
 
 
 if __name__ == "__main__":
