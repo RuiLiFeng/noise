@@ -33,7 +33,7 @@ def read_images(src_dir):
 def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
     img_in = tf.constant(img)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
-    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.zeros([1, 18, 512]),
+    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.zeros([1, 12, 512]),
                               trainable=True)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
 
