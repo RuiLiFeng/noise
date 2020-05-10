@@ -90,6 +90,7 @@ def main():
     metrics = []
 
     for img in imgs:
+        img = np.expand_dims(img, 0)
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration, vgg)
         misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.src_dir, 'si.png'), drange=[0, 1])
 
