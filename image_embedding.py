@@ -5,6 +5,7 @@ import PIL.Image
 import dnnlib
 import dnnlib.tflib as tflib
 from training import misc
+import os
 
 import re
 import sys
@@ -22,7 +23,10 @@ def read_image(img):
 
 
 def read_images(src_dir):
-    return src_dir
+    imgs = []
+    for i,j,k in os.walk(src_dir):
+        imgs.append(read_image(os.path.join(i, k)))
+    return imgs
 
 
 def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
