@@ -94,7 +94,7 @@ def main():
     _, _, G = pretrained_networks.load_networks(args.network)
     # vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
     vgg = tf.keras.applications.VGG16(include_top=False, input_shape=[3, 128, 128],
-                                      weights='/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl',
+                                      weights='/gdata2/fengrl/metrics/vgg.h5',
                                       pooling=None, classifier_activation='softmax')
 
     imgs = read_images(args.src_dir)
