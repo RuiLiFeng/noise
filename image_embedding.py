@@ -17,9 +17,8 @@ def read_image(img):
     I = PIL.Image.open(img)
     I = I.convert('RGB')
     I = np.array(I, np.float32) / 255.0
-    print(I.shape)
     if I.shape[-1] == 3:
-        I.transpose([2, 0, 1])
+        I = I.transpose([2, 0, 1])
     return I
 
 
@@ -92,7 +91,6 @@ def main():
 
     for img in imgs:
         img = np.expand_dims(img, 0)
-        print(img.shape)
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration, vgg)
         misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.src_dir, 'si.png'), drange=[0, 1])
 
