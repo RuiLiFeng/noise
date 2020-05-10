@@ -31,7 +31,7 @@ def read_images(src_dir):
     return imgs
 
 
-def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
+def embed(batch_size, resolution, img, G, iteration, seed=6600):
     img_in = tf.constant(img)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.zeros([1, 12, 512]),
@@ -48,11 +48,15 @@ def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
     si_list = []
     synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
     synth_img = (synth_img + 1.0) / 2.0
+
     with tf.variable_scope('mse_loss'):
         mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
     with tf.variable_scope('perceptual_loss'):
         vgg_in = tf.concat([img_in, synth_img], 0)
-        _ = vgg(vgg_in)
+        tf.keras.backend.set_image_data_format('channels_first')
+        vgg = tf.keras.applications.VGG16(include_top=False, input_tensor=vgg_in, input_shape=(3, 128, 128),
+                                          weights='/gdata2/fengrl/metrics/vgg.h5',
+                                          pooling=None)
         h1 = vgg.get_layer('block1_conv1').output
         h2 = vgg.get_layer('block1_conv2').output
         h3 = vgg.get_layer('block3_conv2').output
@@ -94,10 +98,6 @@ def main():
     tflib.init_tf()
     _, _, G = pretrained_networks.load_networks(args.network)
     # vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
-    tf.keras.backend.set_image_data_format('channels_first')
-    vgg = tf.keras.applications.VGG16(include_top=False, #input_shape=(3, 128, 128),
-                                      weights='/gdata2/fengrl/metrics/vgg.h5',
-                                      pooling=None)
 
     imgs = read_images(args.src_dir)
 
@@ -105,7 +105,7 @@ def main():
 
     for img in imgs:
         img = np.expand_dims(img, 0)
-        l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration, vgg)
+        l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration)
         misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si.png'), drange=[0, 1])
         break
 
