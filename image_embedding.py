@@ -95,7 +95,7 @@ def main():
     # vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
     vgg = tf.keras.applications.VGG16(include_top=False, input_shape=(3, 128, 128),
                                       weights='/gdata2/fengrl/metrics/vgg.h5',
-                                      pooling=None)
+                                      pooling=None, data_format='channels_first')
 
     imgs = read_images(args.src_dir)
 
