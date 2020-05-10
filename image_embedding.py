@@ -66,8 +66,6 @@ def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
         si_list.append(si_)
         if i % 100 == 0:
             print('Loss %f, mse %f, ppl %f, step %d' % (loss_, m_loss_, p_loss_, i))
-        misc.save_image_grid(np.concatenate(si_list, 0),
-                             dnnlib.make_run_dir_path('si.png' % seed), drange=[0, 1])
     return loss_list, p_loss_list, m_loss_list, dl_list, si_list
 
 
@@ -92,6 +90,7 @@ def main():
 
     for img in imgs:
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration, vgg)
+        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.src_dir, 'si.png'), drange=[0, 1])
 
 
 if __name__ == "__main__":
