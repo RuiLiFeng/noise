@@ -34,8 +34,6 @@ def read_images(src_dir):
 def embed(batch_size, resolution, img, G, iteration, seed=6600):
     img_in = tf.constant(img)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
-    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.zeros([1, 12, 512]),
-                              trainable=True)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
 
     G_kwargs = dnnlib.EasyDict()
@@ -46,6 +44,13 @@ def embed(batch_size, resolution, img, G, iteration, seed=6600):
     m_loss_list = []
     dl_list = []
     si_list = []
+
+    rnd = np.random.RandomState(seed)
+    z = rnd.randn(128, *G.input_shape[1:])  # [minibatch, component]
+    dlatent_avg = G.components.mapping.run(z, is_training=False, **G_kwargs)
+    batch_avg = np.mean(dlatent_avg[:, 0], axis=0, keepdims=True)
+    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(batch_avg),
+                              trainable=True)
     synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
 
@@ -68,7 +73,7 @@ def embed(batch_size, resolution, img, G, iteration, seed=6600):
         train_op = opt.minimize(loss, var_list=[dlatent])
 
     tflib.init_uninitialized_vars()
-    rnd = np.random.RandomState(seed)
+    # rnd = np.random.RandomState(seed)
     tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars})  # [height, width]
     for i in range(iteration):
         loss_, p_loss_, m_loss_, dl_, si_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, train_op])
