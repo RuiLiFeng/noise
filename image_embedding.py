@@ -16,7 +16,7 @@ import pretrained_networks
 def read_image(img):
     I = PIL.Image.open(img)
     I = I.convert('RGB')
-    I = np.array(I, np.float32) / 255.0
+    I = (np.array(I, np.float32) / 255.0 - 0.5) * 2
     if I.shape[-1] == 3:
         I = I.transpose([2, 0, 1])
     return I
@@ -47,7 +47,7 @@ def embed(batch_size, resolution, img, G, iteration, seed=6600):
     dl_list = []
     si_list = []
     synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
-    synth_img = (synth_img + 1.0) / 2.0
+    # synth_img = (synth_img + 1.0) / 2.0
 
     with tf.variable_scope('mse_loss'):
         mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
@@ -106,7 +106,7 @@ def main():
     for img in imgs:
         img = np.expand_dims(img, 0)
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration)
-        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si.png'), drange=[0, 1])
+        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si.png'), drange=[-1, 1])
         break
 
 
