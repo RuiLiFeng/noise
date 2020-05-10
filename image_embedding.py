@@ -25,7 +25,8 @@ def read_image(img):
 def read_images(src_dir):
     imgs = []
     for i,j,k in os.walk(src_dir):
-        imgs.append(read_image(os.path.join(i, k)))
+        for e in k:
+            imgs.append(read_image(os.path.join(i, k)))
     return imgs
 
 
