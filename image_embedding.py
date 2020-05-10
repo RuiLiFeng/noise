@@ -51,7 +51,7 @@ def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
     with tf.variable_scope('mse_loss'):
         mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
     with tf.variable_scope('perceptual_loss'):
-        vgg_in = tf.concat([img_in, synth_img])
+        vgg_in = tf.concat([img_in, synth_img], 0)
         _ = vgg(vgg_in)
         h1 = vgg.get_layer('block1_conv1').output
         h2 = vgg.get_layer('block1_conv2').output
@@ -72,7 +72,8 @@ def embed(batch_size, resolution, img, G, iteration, vgg, seed=6600):
         p_loss_list.append(p_loss_)
         m_loss_list.append(m_loss_)
         dl_list.append(dl_)
-        si_list.append(si_)
+        if i % 500 == 0:
+            si_list.append(si_)
         if i % 100 == 0:
             print('Loss %f, mse %f, ppl %f, step %d' % (loss_, m_loss_, p_loss_, i))
     return loss_list, p_loss_list, m_loss_list, dl_list, si_list
@@ -82,7 +83,7 @@ def main():
     parser = argparse.ArgumentParser(description='Find latent representation of reference images using perceptual loss')
     parser.add_argument('--batch_size', default=1, help='Batch size for generator and perceptual model', type=int)
     parser.add_argument('--resolution', default=128, type=int)
-    parser.add_argument('--src_dir', default="source_image/")
+    parser.add_argument('--src_dir', default="/gdata2/fengrl/imgs-for-embed/")
     parser.add_argument('--network', default="weight_files/pytorch/karras2019stylegan-ffhq-1024x1024.pt", type=str)
     parser.add_argument('--iteration', default=1000, type=int)
     parser.add_argument('--result_dir', default='/gdata2/fengrl/inverse')
