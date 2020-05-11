@@ -68,7 +68,7 @@ def embed(batch_size, resolution, img, G, iteration, seed=6600):
         h4 = vgg.get_layer('block4_conv2').output
         pcep_loss = tf.reduce_mean(tf.square(h1[0] - h1[1])) + tf.reduce_mean(tf.square(h2[0] - h2[1])) + \
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
-    loss = mse_loss + pcep_loss
+    loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
         train_op = opt.minimize(loss, var_list=[dlatent])
 
