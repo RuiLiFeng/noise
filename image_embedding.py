@@ -46,10 +46,8 @@ def embed(batch_size, resolution, img, G, iteration, seed=6600):
     si_list = []
 
     rnd = np.random.RandomState(seed)
-    z = rnd.randn(128, *G.input_shape[1:])  # [minibatch, component]
-    dlatent_avg = G.components.mapping.run(z, None, **G_kwargs)
-    batch_avg = np.mean(dlatent_avg, axis=0, keepdims=True)
-    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(batch_avg),
+    dlatent_avg = [var for name, var in G.vars.items() if name.startswith('dlatent_avg')][0].eval()
+    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
                               trainable=True)
     synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image_embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_embedding.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +19,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/training/networks_stylegan2.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-38">
-                    <caret line="205" column="48" lean-forward="true" selection-start-line="205" selection-start-column="48" selection-end-line="205" selection-end-column="48" />
+                  <state relative-caret-position="361">
+                    <caret line="202" column="62" lean-forward="true" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
                   </state>
                 </provider>
               </entry>
@@ -43,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/image_embedding.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="323">
+              <caret line="49" column="86" lean-forward="true" selection-start-line="49" selection-start-column="86" selection-end-line="49" selection-end-column="86" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -71,10 +72,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
+        <entry file="file://$PROJECT_DIR$/pretrained_networks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="59" column="70" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="59" selection-end-column="70" />
+            <state relative-caret-position="80">
+              <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run_generator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="20" column="63" lean-forward="true" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
               <folding>
                 <element signature="e#227#242#0" expanded="true" />
               </folding>
@@ -173,10 +183,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="5" />
-    <option name="y" value="5" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-2022" />
+    <option name="y" value="172" />
+    <option name="width" value="1937" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -334,20 +344,21 @@
       <workItem from="1588924922713" duration="6597000" />
       <workItem from="1588954656016" duration="7254000" />
       <workItem from="1589045968352" duration="273000" />
-      <workItem from="1589095018179" duration="17381000" />
+      <workItem from="1589095018179" duration="19351000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178870000" />
+    <option name="totallyTimeSpent" value="180840000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1997319" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1997319" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.398017" />
@@ -359,8 +370,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.22096318" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.38101983" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.22096318" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.38101983" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -613,27 +624,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pretrained_networks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/metrics/metric_defaults.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="29" column="43" lean-forward="true" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -693,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/conda/Lib/site-packages/keras_applications/imagenet_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/conda/Lib/site-packages/keras_applications/vgg16.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -717,16 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="59" column="70" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="59" selection-end-column="70" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/tfutil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -734,17 +711,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://E:/conda/Lib/site-packages/keras_applications/imagenet_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pretrained_networks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="205" column="48" lean-forward="true" selection-start-line="205" selection-start-column="48" selection-end-line="205" selection-end-column="48" />
+        <state relative-caret-position="361">
+          <caret line="202" column="62" lean-forward="true" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="20" column="63" lean-forward="true" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/image_embedding.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="323">
+          <caret line="49" column="86" lean-forward="true" selection-start-line="49" selection-start-column="86" selection-end-line="49" selection-end-column="86" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
