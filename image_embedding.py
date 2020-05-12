@@ -119,7 +119,7 @@ def main():
         img = np.expand_dims(img, 0)
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, args.network, args.iteration)
         misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si%d.png' % idx), drange=[-1, 1])
-        misc.save_image_grid(np.expand_dims(s[-1]), os.path.join(args.result_dir, 'sifinal%d.png' % idx),
+        misc.save_image_grid(s[-1], os.path.join(args.result_dir, 'sifinal%d.png' % idx),
                              drange=[-1, 1])
         print('loss_mean: %f, ppl_mean: %f, mse_mean: %f' % (l[-1],
                                                              p[-1],
