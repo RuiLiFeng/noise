@@ -83,11 +83,13 @@ def embed(batch_size, resolution, img, network, iteration, seed=6600):
         loss_list.append(loss_)
         p_loss_list.append(p_loss_)
         m_loss_list.append(m_loss_)
-        dl_list.append(dl_)
+        dl_loss_ = np.sum(np.square(dl_-dlatent_avg))
+        dl_list.append(dl_loss_)
         if i % 500 == 0:
             si_list.append(si_)
         if i % 100 == 0:
-            print('Loss %f, mse %f, ppl %f, step %d' % (loss_, m_loss_, p_loss_, i))
+            print('Loss %f, mse %f, ppl %f, dl %f, step %d' % (loss_, m_loss_, p_loss_,
+                                                               dl_loss_, i))
     return loss_list, p_loss_list, m_loss_list, dl_list, si_list
 
 
@@ -109,6 +111,7 @@ def main():
     metrics_l = []
     metrics_p = []
     metrics_m = []
+    metrics_d = []
 
     idx = 0
 
@@ -116,7 +119,7 @@ def main():
         img = np.expand_dims(img, 0)
         l, p, m, d, s = embed(args.batch_size, args.resolution, img, args.network, args.iteration)
         misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si%d.png' % idx), drange=[-1, 1])
-        misc.save_image_grid(np.expand_dims(s[-1], 0), os.path.join(args.result_dir, 'sifinal%d.png' % idx),
+        misc.save_image_grid(np.expand_dims(s[-1]), os.path.join(args.result_dir, 'sifinal%d.png' % idx),
                              drange=[-1, 1])
         print('loss_mean: %f, ppl_mean: %f, mse_mean: %f' % (l[-1],
                                                              p[-1],
@@ -125,10 +128,30 @@ def main():
         metrics_l.append(l[-1])
         metrics_p.append(p[-1])
         metrics_m.append(m[-1])
+        metrics_d.append(d[-1])
+        with open(os.path.join(args.result_dir, 'metric_l%d.txt'),'w') as f:
+            for l_ in l:
+                f.write(str(l_)+'\n')
+        with open(os.path.join(args.result_dir, 'metric_p%d.txt'),'w') as f:
+            for l_ in p:
+                f.write(str(l_)+'\n')
+        with open(os.path.join(args.result_dir, 'metric_m%d.txt'),'w') as f:
+            for l_ in m:
+                f.write(str(l_)+'\n')
+        with open(os.path.join(args.result_dir, 'metric_d%d.txt'),'w') as f:
+            for l_ in d:
+                f.write(str(l_)+'\n')
+
     l_mean = np.mean(np.concatenate(metrics_l, 0))
     p_mean = np.mean(np.concatenate(metrics_p, 0))
     m_mean = np.mean(np.concatenate(metrics_m, 0))
-    print('Overall metrics: loss_mean %f, ppl_mean %f, mse_mean %f' % (l_mean, p_mean, m_mean))
+    d_mean = np.mean(np.concatenate(metrics_d, 0))
+    print('Overall metrics: loss_mean %f, ppl_mean %f, mse_mean %f, d_mean %f' % (l_mean, p_mean, m_mean, d_mean))
+    with open(os.path.join(args.result_dir, 'mean_metrics'), 'w') as f:
+        f.write('loss %f\n' % l_mean)
+        f.write('mse %f\n' % m_mean)
+        f.write('ppl %f\n' % p_mean)
+        f.write('dl %f\n' % d_mean)
 
 
 if __name__ == "__main__":
