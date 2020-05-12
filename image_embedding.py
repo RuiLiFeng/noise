@@ -131,16 +131,16 @@ def main():
         metrics_p.append(p[-1])
         metrics_m.append(m[-1])
         metrics_d.append(d[-1])
-        with open(os.path.join(args.result_dir, 'metric_l%d.txt'),'w') as f:
+        with open(os.path.join(args.result_dir, 'metric_l%d.txt' % idx),'w') as f:
             for l_ in l:
                 f.write(str(l_)+'\n')
-        with open(os.path.join(args.result_dir, 'metric_p%d.txt'),'w') as f:
+        with open(os.path.join(args.result_dir, 'metric_p%d.txt' % idx),'w') as f:
             for l_ in p:
                 f.write(str(l_)+'\n')
-        with open(os.path.join(args.result_dir, 'metric_m%d.txt'),'w') as f:
+        with open(os.path.join(args.result_dir, 'metric_m%d.txt' % idx),'w') as f:
             for l_ in m:
                 f.write(str(l_)+'\n')
-        with open(os.path.join(args.result_dir, 'metric_d%d.txt'),'w') as f:
+        with open(os.path.join(args.result_dir, 'metric_d%d.txt' % idx),'w') as f:
             for l_ in d:
                 f.write(str(l_)+'\n')
 
