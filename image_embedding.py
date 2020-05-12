@@ -32,6 +32,7 @@ def read_images(src_dir):
 
 
 def embed(batch_size, resolution, img, network, iteration, seed=6600):
+    tf.reset_default_graph()
     print('Loading networks from "%s"...' % network)
     tflib.init_tf()
     _, _, G = pretrained_networks.load_networks(network)
@@ -121,9 +122,10 @@ def main():
         misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si%d.png' % idx), drange=[-1, 1])
         misc.save_image_grid(s[-1], os.path.join(args.result_dir, 'sifinal%d.png' % idx),
                              drange=[-1, 1])
-        print('loss_mean: %f, ppl_mean: %f, mse_mean: %f' % (l[-1],
-                                                             p[-1],
-                                                             m[-1]))
+        print('loss: %f, ppl: %f, mse: %f, d: %f' % (l[-1],
+                                                     p[-1],
+                                                     m[-1],
+                                                     d[-1]))
         idx += 1
         metrics_l.append(l[-1])
         metrics_p.append(p[-1])
