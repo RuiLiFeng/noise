@@ -31,7 +31,10 @@ def read_images(src_dir):
     return imgs
 
 
-def embed(batch_size, resolution, img, G, iteration, seed=6600):
+def embed(batch_size, resolution, img, network, iteration, seed=6600):
+    print('Loading networks from "%s"...' % network)
+    tflib.init_tf()
+    _, _, G = pretrained_networks.load_networks(network)
     img_in = tf.constant(img)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
@@ -99,20 +102,33 @@ def main():
 
     args = parser.parse_args()
 
-    print('Loading networks from "%s"...' % args.network)
-    tflib.init_tf()
-    _, _, G = pretrained_networks.load_networks(args.network)
     # vgg = misc.load_pkl('/gdata2/fengrl/metrics/vgg16_zhang_perceptual.pkl')
 
     imgs = read_images(args.src_dir)
 
-    metrics = []
+    metrics_l = []
+    metrics_p = []
+    metrics_m = []
+
+    idx = 0
 
     for img in imgs:
         img = np.expand_dims(img, 0)
-        l, p, m, d, s = embed(args.batch_size, args.resolution, img, G, args.iteration)
-        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si.png'), drange=[-1, 1])
-        break
+        l, p, m, d, s = embed(args.batch_size, args.resolution, img, args.network, args.iteration)
+        misc.save_image_grid(np.concatenate(s, 0), os.path.join(args.result_dir, 'si%d.png' % idx), drange=[-1, 1])
+        misc.save_image_grid(np.expand_dims(s[-1], 0), os.path.join(args.result_dir, 'sifinal%d.png' % idx),
+                             drange=[-1, 1])
+        print('loss_mean: %f, ppl_mean: %f, mse_mean: %f' % (l[-1],
+                                                             p[-1],
+                                                             m[-1]))
+        idx += 1
+        metrics_l.append(l[-1])
+        metrics_p.append(p[-1])
+        metrics_m.append(m[-1])
+    l_mean = np.mean(np.concatenate(metrics_l, 0))
+    p_mean = np.mean(np.concatenate(metrics_p, 0))
+    m_mean = np.mean(np.concatenate(metrics_m, 0))
+    print('Overall metrics: loss_mean %f, ppl_mean %f, mse_mean %f' % (l_mean, p_mean, m_mean))
 
 
 if __name__ == "__main__":
