@@ -32,66 +32,66 @@ def read_images(src_dir):
 
 
 def embed(batch_size, resolution, img, network, iteration, seed=6600):
-    tf.reset_default_graph()
-    print('Loading networks from "%s"...' % network)
-    tflib.init_tf()
-    _, _, G = pretrained_networks.load_networks(network)
-    img_in = tf.constant(img)
-    opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
-    noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
+    with tf.Graph().as_default(), tflib.create_session().as_default():
+        print('Loading networks from "%s"...' % network)
+        # tflib.init_tf()
+        _, _, G = pretrained_networks.load_networks(network)
+        img_in = tf.constant(img)
+        opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
+        noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
 
-    G_kwargs = dnnlib.EasyDict()
-    G_kwargs.randomize_noise = False
-    G_syn = G.components.synthesis
-    loss_list = []
-    p_loss_list = []
-    m_loss_list = []
-    dl_list = []
-    si_list = []
+        G_kwargs = dnnlib.EasyDict()
+        G_kwargs.randomize_noise = False
+        G_syn = G.components.synthesis
+        loss_list = []
+        p_loss_list = []
+        m_loss_list = []
+        dl_list = []
+        si_list = []
 
-    rnd = np.random.RandomState(seed)
-    dlatent_avg = [var for name, var in G.vars.items() if name.startswith('dlatent_avg')][0].eval()
-    dlatent_avg = np.expand_dims(np.expand_dims(dlatent_avg, 0), 1)
-    dlatent_avg = dlatent_avg.repeat(12, 1)
-    dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
-                              trainable=True)
-    synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
-    # synth_img = (synth_img + 1.0) / 2.0
+        rnd = np.random.RandomState(seed)
+        dlatent_avg = [var for name, var in G.vars.items() if name.startswith('dlatent_avg')][0].eval()
+        dlatent_avg = np.expand_dims(np.expand_dims(dlatent_avg, 0), 1)
+        dlatent_avg = dlatent_avg.repeat(12, 1)
+        dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
+                                  trainable=True)
+        synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
+        # synth_img = (synth_img + 1.0) / 2.0
 
-    with tf.variable_scope('mse_loss'):
-        mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
-    with tf.variable_scope('perceptual_loss'):
-        vgg_in = tf.concat([img_in, synth_img], 0)
-        tf.keras.backend.set_image_data_format('channels_first')
-        vgg = tf.keras.applications.VGG16(include_top=False, input_tensor=vgg_in, input_shape=(3, 128, 128),
-                                          weights='/gdata2/fengrl/metrics/vgg.h5',
-                                          pooling=None)
-        h1 = vgg.get_layer('block1_conv1').output
-        h2 = vgg.get_layer('block1_conv2').output
-        h3 = vgg.get_layer('block3_conv2').output
-        h4 = vgg.get_layer('block4_conv2').output
-        pcep_loss = tf.reduce_mean(tf.square(h1[0] - h1[1])) + tf.reduce_mean(tf.square(h2[0] - h2[1])) + \
-                    tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
-    loss = 0.5 * mse_loss + 0.5 * pcep_loss
-    with tf.control_dependencies([loss]):
-        train_op = opt.minimize(loss, var_list=[dlatent])
+        with tf.variable_scope('mse_loss'):
+            mse_loss = tf.reduce_mean(tf.square(img_in - synth_img))
+        with tf.variable_scope('perceptual_loss'):
+            vgg_in = tf.concat([img_in, synth_img], 0)
+            tf.keras.backend.set_image_data_format('channels_first')
+            vgg = tf.keras.applications.VGG16(include_top=False, input_tensor=vgg_in, input_shape=(3, 128, 128),
+                                              weights='/gdata2/fengrl/metrics/vgg.h5',
+                                              pooling=None)
+            h1 = vgg.get_layer('block1_conv1').output
+            h2 = vgg.get_layer('block1_conv2').output
+            h3 = vgg.get_layer('block3_conv2').output
+            h4 = vgg.get_layer('block4_conv2').output
+            pcep_loss = tf.reduce_mean(tf.square(h1[0] - h1[1])) + tf.reduce_mean(tf.square(h2[0] - h2[1])) + \
+                        tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
+        loss = 0.5 * mse_loss + 0.5 * pcep_loss
+        with tf.control_dependencies([loss]):
+            train_op = opt.minimize(loss, var_list=[dlatent])
 
-    tflib.init_uninitialized_vars()
-    # rnd = np.random.RandomState(seed)
-    tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars})  # [height, width]
-    for i in range(iteration):
-        loss_, p_loss_, m_loss_, dl_, si_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, train_op])
-        loss_list.append(loss_)
-        p_loss_list.append(p_loss_)
-        m_loss_list.append(m_loss_)
-        dl_loss_ = np.sum(np.square(dl_-dlatent_avg))
-        dl_list.append(dl_loss_)
-        if i % 500 == 0:
-            si_list.append(si_)
-        if i % 100 == 0:
-            print('Loss %f, mse %f, ppl %f, dl %f, step %d' % (loss_, m_loss_, p_loss_,
-                                                               dl_loss_, i))
-    return loss_list, p_loss_list, m_loss_list, dl_list, si_list
+        tflib.init_uninitialized_vars()
+        # rnd = np.random.RandomState(seed)
+        tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars})  # [height, width]
+        for i in range(iteration):
+            loss_, p_loss_, m_loss_, dl_, si_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, train_op])
+            loss_list.append(loss_)
+            p_loss_list.append(p_loss_)
+            m_loss_list.append(m_loss_)
+            dl_loss_ = np.sum(np.square(dl_-dlatent_avg))
+            dl_list.append(dl_loss_)
+            if i % 500 == 0:
+                si_list.append(si_)
+            if i % 100 == 0:
+                print('Loss %f, mse %f, ppl %f, dl %f, step %d' % (loss_, m_loss_, p_loss_,
+                                                                   dl_loss_, i))
+        return loss_list, p_loss_list, m_loss_list, dl_list, si_list
 
 
 def main():
