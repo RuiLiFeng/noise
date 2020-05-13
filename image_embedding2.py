@@ -126,10 +126,10 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                 f.write(str(l_) + '\n')
         idx += 1
 
-    l_mean = np.mean(np.concatenate(metrics_l, 0))
-    p_mean = np.mean(np.concatenate(metrics_p, 0))
-    m_mean = np.mean(np.concatenate(metrics_m, 0))
-    d_mean = np.mean(np.concatenate(metrics_d, 0))
+    l_mean = np.mean(metrics_l)
+    p_mean = np.mean(metrics_p)
+    m_mean = np.mean(metrics_m)
+    d_mean = np.mean(metrics_d)
     print('Overall metrics: loss_mean %f, ppl_mean %f, mse_mean %f, d_mean %f' % (l_mean, p_mean, m_mean, d_mean))
     with open(os.path.join(result_dir, 'mean_metrics'), 'w') as f:
         f.write('loss %f\n' % l_mean)
