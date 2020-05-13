@@ -153,7 +153,7 @@ def main():
 
     imgs = read_images(args.src_dir)
 
-    embed(args.batch_size, args.resolution, imgs, args.network, args.result_dir, args.iteration)
+    embed(args.batch_size, args.resolution, imgs, args.network, args.iteration, args.result_dir)
 
 
 
