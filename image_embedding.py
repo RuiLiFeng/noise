@@ -50,7 +50,7 @@ def embed(batch_size, resolution, img, network, iteration, seed=6600):
         si_list = []
 
         rnd = np.random.RandomState(seed)
-        dlatent_avg = [var for name, var in G.vars.items() if name.startswith('dlatent_avg')][0].eval()
+        dlatent_avg = [var for name, var in G.vars.items() if name.startswith('dlatent_avg')][0].eval(session=tf.get_default_session())
         dlatent_avg = np.expand_dims(np.expand_dims(dlatent_avg, 0), 1)
         dlatent_avg = dlatent_avg.repeat(12, 1)
         dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
