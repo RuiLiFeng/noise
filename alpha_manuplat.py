@@ -91,7 +91,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     metrics_m = []
     metrics_d = []
 
-    metrics_args = [metric_defaults[x] for x in ['fig50k', 'ppl_wend']]
+    metrics_args = [metric_defaults[x] for x in ['fid50k', 'ppl_wend']]
 
     metrics_fun = metric_base.MetricGroup(metrics_args)
     for temperature in [0.2, 0.5, 1.0, 1.5, 2.0, 10.0]:
