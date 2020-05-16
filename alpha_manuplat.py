@@ -96,8 +96,8 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     metrics_fun = metric_base.MetricGroup(metrics_args)
     for temperature in [0.2, 0.5, 1.0, 1.5, 2.0, 10.0]:
         tflib.set_vars({alpha: scale_alpha(alpha_np, temperature) for alpha, alpha_np in zip(alpha_vars, alpha_eval)})
-        misc.save_pkl((G, G, G), result_dir + 'temp%f.pkl' % temperature)
-        metrics_fun.run(result_dir + 'temp%f.pkl' % temperature, run_dir=result_dir,
+        misc.save_pkl((G, G, G), os.path.join(result_dir, 'temp%f.pkl' % temperature))
+        metrics_fun.run(os.path.join(result_dir, 'temp%f.pkl' % temperature), run_dir=result_dir,
                         data_dir='/gdata/fengrl/noise_test_dset/tfrecords',
                         dataset_args=dnnlib.EasyDict(tfrecord_dir='ffhq-128', shuffle_mb=0),
                         mirror_augment=True, num_gpus=1)
