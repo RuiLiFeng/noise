@@ -89,7 +89,7 @@ def D_logistic_r2(G, D, opt, training_set, minibatch_size, reals, labels, gamma=
 # WGAN loss from the paper
 # "Wasserstein Generative Adversarial Networks", Arjovsky et al. 2017
 
-def G_wgan(G, D, opt, training_set, minibatch_size):
+def G_wgan(G, D, opt, training_set, minibatch_size, **kwargs):
     _ = opt
     latents = tf.random_normal([minibatch_size] + G.input_shapes[0][1:])
     labels = training_set.get_random_labels_tf(minibatch_size)
@@ -98,7 +98,7 @@ def G_wgan(G, D, opt, training_set, minibatch_size):
     loss = -fake_scores_out
     return loss, None
 
-def D_wgan(G, D, opt, training_set, minibatch_size, reals, labels, wgan_epsilon=0.001):
+def D_wgan(G, D, opt, training_set, minibatch_size, reals, labels, wgan_epsilon=0.001, **kwargs):
     _ = opt, training_set
     latents = tf.random_normal([minibatch_size] + G.input_shapes[0][1:])
     fake_images_out = G.get_output_for(latents, labels, is_training=True)
@@ -116,7 +116,7 @@ def D_wgan(G, D, opt, training_set, minibatch_size, reals, labels, wgan_epsilon=
 # WGAN-GP loss from the paper
 # "Improved Training of Wasserstein GANs", Gulrajani et al. 2017
 
-def D_wgan_gp(G, D, opt, training_set, minibatch_size, reals, labels, wgan_lambda=10.0, wgan_epsilon=0.001, wgan_target=1.0):
+def D_wgan_gp(G, D, opt, training_set, minibatch_size, reals, labels, wgan_lambda=10.0, wgan_epsilon=0.001, wgan_target=1.0, **kwargs):
     _ = opt, training_set
     latents = tf.random_normal([minibatch_size] + G.input_shapes[0][1:])
     fake_images_out = G.get_output_for(latents, labels, is_training=True)

@@ -100,7 +100,7 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
     # Configs A-C: Disable path length regularization.
     if config_id in ['config-a', 'config-b', 'config-c'] or\
             model in ['networks_stylegan2_att', 'networks_stylegan2_satt', 'networks_stylegan2_base',
-                      'networks_stylegan2_resample']:
+                      'networks_stylegan2_resample', 'networks_stylegan2_nonoise']:
         G_loss = EasyDict(func_name='training.loss.G_logistic_ns')
 
     if pr is not None:
@@ -143,6 +143,12 @@ def run(model, dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, g
             G.clip_style = 'church'
         elif 'cat' in dataset:
             G.clip_style = 'cat'
+        if 'cifar' in dataset:
+            G.func_name = 'training.dcgan_cifar10.G_main'
+            D.func_name = 'training.dcgan_cifar10.D_stylegan2'
+        if 'wgan' in model:
+            G_loss.func_name = 'training.loss.G_wgan'
+            D_loss.func_name = 'training.loss.D_wgan_gp'
 
     # if model in ['networks_stylegan2_resample']:
     #     if 'cat' in dataset:
