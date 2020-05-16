@@ -48,7 +48,7 @@ class MetricBase:
 
         if (dataset_args is None or mirror_augment is None) and run_dir is not None:
             run_config = misc.parse_config_for_previous_run(run_dir)
-            self._dataset_args = dict(run_config['dataset'])
+            self. _dataset_args = dict(run_config['dataset'])
             self._dataset_args['shuffle_mb'] = 0
             self._mirror_augment = run_config['train'].get('mirror_augment', False)
 

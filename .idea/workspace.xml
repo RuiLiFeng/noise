@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/training/dcgan_cifar10.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/dcgan_wgan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alpha_manuplat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/loss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metrics/metric_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics/metric_base.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,43 +12,56 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/training/training_loop.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="588">
+                    <caret line="340" column="27" selection-start-line="340" selection-start-column="27" selection-end-line="340" selection-end-column="27" />
+                    <folding>
+                      <element signature="e#256#274#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/run_metrics.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="494">
+                    <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+                    <folding>
+                      <element signature="e#227#242#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="1742">
+                    <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/training/training_loop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3363">
-              <caret line="185" column="23" selection-start-line="185" selection-start-column="23" selection-end-line="185" selection-end-column="23" />
-              <folding>
-                <element signature="e#256#274#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dnnlib/tflib/optimizer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
-              <caret line="58" column="54" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/training/loss.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="130" selection-start-line="130" selection-end-line="130" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/training/dcgan_wgan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1222">
-              <caret line="461" column="16" lean-forward="true" selection-start-line="461" selection-start-column="16" selection-end-line="461" selection-end-column="16" />
+            <state relative-caret-position="876">
+              <caret line="461" column="16" selection-start-line="461" selection-start-column="16" selection-end-line="461" selection-end-column="16" />
               <folding>
                 <element signature="e#285#303#0" expanded="true" />
               </folding>
@@ -61,56 +72,60 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/networks_stylegan2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3743">
-              <caret line="202" column="62" lean-forward="true" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
+            <state relative-caret-position="-2515">
+              <caret line="202" column="62" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
+        <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_nonoise.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="243" selection-start-line="243" selection-end-line="254" selection-end-column="16" />
+            <state relative-caret-position="-380">
+              <caret line="462" lean-forward="true" selection-start-line="462" selection-end-line="462" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dataset_tool.py">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1691">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="-2641">
+              <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="51" />
               <folding>
-                <element signature="e#322#331#0" expanded="true" />
+                <element signature="e#227#242#0" expanded="true" />
+                <marker date="1589621623010" expanded="true" signature="6316:6476" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_training.py">
+        <entry file="file://$PROJECT_DIR$/image_embedding2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2109">
-              <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+            <state relative-caret-position="-133">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alpha_manuplat.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-937">
+              <caret line="49" column="55" lean-forward="true" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
+        <entry file="file://$PROJECT_DIR$/metrics/frechet_inception_distance.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1102">
-              <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metrics/inception_score.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+            <state relative-caret-position="297">
+              <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -162,16 +177,19 @@
         <option value="$PROJECT_DIR$/image_embedding.py" />
         <option value="$PROJECT_DIR$/image_embedding2.py" />
         <option value="$PROJECT_DIR$/training/dcgan_cifar10.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/training/loss.py" />
         <option value="$PROJECT_DIR$/training/dcgan_wgan.py" />
+        <option value="$PROJECT_DIR$/training/networks_stylegan2_nonoise.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/metrics/metric_base.py" />
+        <option value="$PROJECT_DIR$/alpha_manuplat.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-185" />
-    <option name="y" value="51" />
-    <option name="width" value="1940" />
+    <option name="x" value="-1368" />
+    <option name="y" value="127" />
+    <option name="width" value="1937" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -179,6 +197,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,13 +236,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/training" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="PyConsoleConfigurable.Python Console" />
@@ -238,8 +256,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\program\stylegan2-master\stylegan2-master\training" />
       <recent name="E:\program\stylegan2-master\stylegan2-master" />
+      <recent name="E:\program\stylegan2-master\stylegan2-master\training" />
       <recent name="D:\program\noise\noise\training" />
     </key>
   </component>
@@ -334,16 +352,17 @@
       <workItem from="1589437633005" duration="3097000" />
       <workItem from="1589442498610" duration="1973000" />
       <workItem from="1589538909148" duration="1652000" />
+      <workItem from="1589621474500" duration="4981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210410000" />
+    <option name="totallyTimeSpent" value="215391000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2077748" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21045576" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -358,7 +377,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.28611898" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.36260623" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.24787535" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -374,27 +393,6 @@
     <SUITE FILE_PATH="coverage/stylegan2_master$main.coverage" NAME="main Coverage Results" MODIFIED="1584173150947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3910">
-          <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/conda/Lib/site-packages/tensorflow/python/ops/gen_nn_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="11005" column="4" selection-start-line="11005" selection-start-column="4" selection-end-line="11005" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_metrics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/ops/fused_bias_act.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -413,13 +411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="237" column="4" selection-start-line="237" selection-start-column="4" selection-end-line="237" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/frechet_inception_distance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="31" column="65" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -444,13 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
           <caret line="354" column="6" selection-start-line="354" selection-start-column="6" selection-end-line="354" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/metric_defaults.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -578,13 +562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dnnlib/submission/submit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="297" column="16" selection-start-line="297" selection-start-column="16" selection-end-line="297" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run_projector_for_noise.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-559">
@@ -650,13 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image_embedding2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/dcgan_loop.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -678,31 +648,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-            <marker date="1589440672346" expanded="true" signature="6286:6446" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/training/training_loop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3363">
-          <caret line="185" column="23" selection-start-line="185" selection-start-column="23" selection-end-line="185" selection-end-column="23" />
-          <folding>
-            <element signature="e#256#274#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/optimizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
           <caret line="58" column="54" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/loss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2413">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
         </state>
       </provider>
     </entry>
@@ -723,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/metrics/inception_score.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -737,33 +686,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/loss.py">
+    <entry file="file://$PROJECT_DIR$/training/dcgan_wgan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        <state relative-caret-position="876">
+          <caret line="461" column="16" selection-start-line="461" selection-start-column="16" selection-end-line="461" selection-end-column="16" />
+          <folding>
+            <element signature="e#285#303#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3743">
-          <caret line="202" column="62" lean-forward="true" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
+        <state relative-caret-position="-2515">
+          <caret line="202" column="62" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_nonoise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="462" lean-forward="true" selection-start-line="462" selection-end-line="462" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image_embedding2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-133">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/metric_defaults.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dnnlib/submission/submit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="143" column="4" selection-start-line="143" selection-start-column="4" selection-end-line="143" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2641">
+          <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="51" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+            <marker date="1589621623010" expanded="true" signature="6316:6476" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/training/training_loop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="340" column="27" selection-start-line="340" selection-start-column="27" selection-end-line="340" selection-end-column="27" />
+          <folding>
+            <element signature="e#256#274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/frechet_inception_distance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="243" selection-start-line="243" selection-end-line="254" selection-end-column="16" />
+        <state relative-caret-position="190">
+          <caret line="250" column="57" lean-forward="true" selection-start-line="250" selection-start-column="57" selection-end-line="250" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/dcgan_wgan.py">
+    <entry file="file://$PROJECT_DIR$/run_metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1222">
-          <caret line="461" column="16" lean-forward="true" selection-start-line="461" selection-start-column="16" selection-end-line="461" selection-end-column="16" />
+        <state relative-caret-position="494">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding>
-            <element signature="e#285#303#0" expanded="true" />
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1742">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpha_manuplat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-937">
+          <caret line="49" column="55" lean-forward="true" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
