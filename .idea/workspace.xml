@@ -2,47 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/alpha_learn.py" beforeDir="false" afterPath="$PROJECT_DIR$/alpha_learn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_learn_full.py" beforeDir="false" afterPath="$PROJECT_DIR$/alpha_learn_full.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/alpha_manuplat.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="433">
-                    <caret line="97" column="118" lean-forward="true" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="118" />
-                    <folding>
-                      <element signature="e#0#23#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="285">
-                    <caret line="44" column="67" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="44" selection-end-column="67" />
-                    <folding>
-                      <element signature="e#227#242#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -55,20 +21,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alpha_learn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="87" column="61" selection-start-line="87" selection-start-column="61" selection-end-line="87" selection-end-column="61" />
+            <state relative-caret-position="189">
+              <caret line="88" column="49" lean-forward="true" selection-start-line="85" selection-start-column="8" selection-end-line="88" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alpha_learn_full.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+            <state relative-caret-position="63">
+              <caret line="132" column="24" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -185,8 +151,8 @@
         <option value="$PROJECT_DIR$/alpha_manuplat.py" />
         <option value="$PROJECT_DIR$/metrics/linear_separability.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_alpha.py" />
-        <option value="$PROJECT_DIR$/alpha_learn_full.py" />
         <option value="$PROJECT_DIR$/alpha_learn.py" />
+        <option value="$PROJECT_DIR$/alpha_learn_full.py" />
       </list>
     </option>
   </component>
@@ -356,12 +322,12 @@
       <workItem from="1589437633005" duration="3097000" />
       <workItem from="1589442498610" duration="1973000" />
       <workItem from="1589538909148" duration="1652000" />
-      <workItem from="1589621474500" duration="26134000" />
+      <workItem from="1589621474500" duration="27101000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236544000" />
+    <option name="totallyTimeSpent" value="237511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
@@ -749,16 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="44" column="67" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="44" selection-end-column="67" />
-          <folding>
-            <element signature="e#227#242#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan2_alpha.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -780,17 +736,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alpha_learn_full.py">
+    <entry file="file://$PROJECT_DIR$/run_generator_visual.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+        <state relative-caret-position="285">
+          <caret line="44" column="67" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="44" selection-end-column="67" />
+          <folding>
+            <element signature="e#227#242#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alpha_learn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="87" column="61" selection-start-line="87" selection-start-column="61" selection-end-line="87" selection-end-column="61" />
+        <state relative-caret-position="189">
+          <caret line="88" column="49" lean-forward="true" selection-start-line="85" selection-start-column="8" selection-end-line="88" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpha_learn_full.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="132" column="24" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="24" />
         </state>
       </provider>
     </entry>
