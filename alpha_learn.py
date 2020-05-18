@@ -32,6 +32,7 @@ def read_images(src_dir):
 
 
 def scale_alpha_exp(alpha, t):
+    alpha = alpha.astype(np.float32)
     return tf.pow(alpha, t) / (tf.pow(alpha, t) + tf.pow(1-alpha, t))
 
 
