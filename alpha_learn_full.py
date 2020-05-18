@@ -61,9 +61,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     dlatent_avg = dlatent_avg.repeat(12, 1)
     dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
                               trainable=True)
-    alpha_pre = [tf.get_variable('alpha%id'%i, dtype=tf.float32, initializer=tf.constant(alpha_evals[i])) for i in range(len(alpha_evals))]
-    alpha_clip = [tf.clip_by_value(alpha, 0.0, 1.0) for alpha in alpha_pre]
-    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_clip, **G_kwargs)
+    Ts = [tf.get_variable('T%d'% i, dtype=tf.float32, initializer=tf.constant(1.0)) for i in range(len(alpha_evals))]
+    alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval, T in zip(alpha_evals, Ts)]
+    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
 
     with tf.variable_scope('mse_loss'):
@@ -82,9 +82,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
-        train_op = opt.minimize(loss, var_list=[dlatent]+alpha_pre)
+        train_op = opt.minimize(loss, var_list=[dlatent]+Ts)
     reset_opt = tf.variables_initializer(opt.variables())
-    reset_dl = tf.variables_initializer([dlatent]+alpha_pre)
+    reset_dl = tf.variables_initializer([dlatent]+Ts)
 
     tflib.init_uninitialized_vars()
     # rnd = np.random.RandomState(seed)
