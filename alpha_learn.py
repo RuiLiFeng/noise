@@ -85,7 +85,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     with tf.control_dependencies([loss]):
         grads = tf.gradients(loss, [dlatent, T])
         train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
-        train_op2 = opt_T.apply_gradients(zip([grads[1]], T))
+        train_op2 = opt_T.apply_gradients(zip([grads[1]], [T]))
         train_op = tf.group(train_op1, train_op2)
     reset_opt = tf.variables_initializer(opt.variables(), opt_T.variables())
     reset_dl = tf.variables_initializer([dlatent, T])
