@@ -154,6 +154,10 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         p_mean = np.mean(metrics_p)
         m_mean = np.mean(metrics_m)
         d_mean = np.mean(metrics_d)
+        with open(os.path.join(result_dir, 'Temp%fmetric_lmpd.txt' % temperature), 'w') as f:
+            for i in range(len(metrics_l)):
+                f.write(str(metrics_l[i]) + '    ' + str(metrics_m[i]) + '    ' + str(metrics_p[i]) + '    ' + str(
+                    metrics_d[i]) + '\n')
         print('Overall metrics: temp %f, loss_mean %f, ppl_mean %f, mse_mean %f, d_mean %f' % (temperature, l_mean, p_mean, m_mean, d_mean))
         with open(os.path.join(result_dir, 'mean_metrics'), 'a') as f:
             f.write('Temperature %f\n' % temperature)
