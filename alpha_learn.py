@@ -144,6 +144,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     m_mean = np.mean(metrics_m)
     d_mean = np.mean(metrics_d)
     with open(os.path.join(result_dir, 'metric_lmpd.txt'), 'w') as f:
+        f.write(str(alpha_evals)+'\n')
         for i in range(len(metrics_l)):
             f.write(str(alpha_list[i])+'    '+str(metrics_l[i])+'    '+str(metrics_m[i])+'    '+str(metrics_p[i])+'    '+str(metrics_d[i])+'\n')
 
