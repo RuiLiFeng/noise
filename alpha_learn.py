@@ -111,7 +111,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
             if i % 500 == 0:
                 si_list.append(si_)
             if i % 100 == 0:
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, i))
+                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, temp %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, temp_, i))
         print('Temp: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (temp_,
                                                                loss_list[-1],
                                                                p_loss_list[-1],
