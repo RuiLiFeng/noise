@@ -38,9 +38,13 @@ def scale_alpha_exp(alpha, t):
 
 def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=6600):
     tf.reset_default_graph()
+    G_args = dnnlib.EasyDict(func_name='training.networks_stylegan2_alpha.G_main')
+    G_args.fmap_base = 8 << 10
     print('Loading networks from "%s"...' % network)
     tflib.init_tf()
-    _, _, G = pretrained_networks.load_networks(network)
+    G = tflib.Network('G', num_channels=3, resolution=128, **G_args)
+    _, _, Gs = pretrained_networks.load_networks(network)
+    G.copy_vars_from(Gs)
     img_in = tf.placeholder(tf.float32)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
@@ -57,8 +61,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     dlatent_avg = dlatent_avg.repeat(12, 1)
     dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
                               trainable=True)
-
-    synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
+    T = tf.get_variable('T', dtype=tf.float32, initializer=tf.constant(1.0))
+    alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval in alpha_evals]
+    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
 
     with tf.variable_scope('mse_loss'):
@@ -77,9 +82,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
-        train_op = opt.minimize(loss, var_list=[dlatent] + alpha_vars)
+        train_op = opt.minimize(loss, var_list=[dlatent, T])
     reset_opt = tf.variables_initializer(opt.variables())
-    reset_dl = tf.variables_initializer([dlatent])
+    reset_dl = tf.variables_initializer([dlatent, T])
 
     tflib.init_uninitialized_vars()
     # rnd = np.random.RandomState(seed)
@@ -89,7 +94,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     metrics_p = []
     metrics_m = []
     metrics_d = []
-    alpha_list = []
+    T_list = []
     for img in imgs:
         img = np.expand_dims(img, 0)
         loss_list = []
@@ -97,22 +102,21 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         m_loss_list = []
         dl_list = []
         si_list = []
-        tflib.set_vars({alpha: alpha_np for alpha, alpha_np in zip(alpha_vars, alpha_evals)})
+        # tflib.set_vars({alpha: alpha_np for alpha, alpha_np in zip(alpha_vars, alpha_evals)})
         tflib.run([reset_opt, reset_dl])
         for i in range(iteration):
-            loss_, p_loss_, m_loss_, dl_, si_, alphas_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, alpha_vars, train_op],
+            loss_, p_loss_, m_loss_, dl_, si_, t_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, T, train_op],
                                                              {img_in: img})
             loss_list.append(loss_)
             p_loss_list.append(p_loss_)
             m_loss_list.append(m_loss_)
             dl_loss_ = np.sum(np.square(dl_-dlatent_avg))
             dl_list.append(dl_loss_)
-            alpha_dis = np.mean(np.square([alpha_ - alpha_eval for alpha_, alpha_eval in zip(alphas_, alpha_evals)]))
             if i % 500 == 0:
                 si_list.append(si_)
             if i % 100 == 0:
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, alpha_dis %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, alpha_dis, i))
-        print('Temp: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (alpha_dis,
+                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, t %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, t_, i))
+        print('T: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (t_,
                                                                loss_list[-1],
                                                                p_loss_list[-1],
                                                                m_loss_list[-1],
@@ -121,7 +125,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         metrics_p.append(p_loss_list[-1])
         metrics_m.append(m_loss_list[-1])
         metrics_d.append(dl_list[-1])
-        alpha_list.append([alphas_, alpha_dis])
+        T_list.append(t_)
         misc.save_image_grid(np.concatenate(si_list, 0), os.path.join(result_dir, 'si%d.png' % idx), drange=[-1, 1])
         misc.save_image_grid(si_list[-1], os.path.join(result_dir, 'sifinal%d.png' % idx),
                              drange=[-1, 1])
@@ -146,7 +150,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     with open(os.path.join(result_dir, 'metric_lmpd.txt'), 'w') as f:
         f.write(str(alpha_evals)+'\n')
         for i in range(len(metrics_l)):
-            f.write(str(alpha_list[i])+'    '+str(metrics_l[i])+'    '+str(metrics_m[i])+'    '+str(metrics_p[i])+'    '+str(metrics_d[i])+'\n')
+            f.write(str(T_list[i])+'    '+str(metrics_l[i])+'    '+str(metrics_m[i])+'    '+str(metrics_p[i])+'    '+str(metrics_d[i])+'\n')
 
     print('Overall metrics: loss_mean %f, ppl_mean %f, mse_mean %f, d_mean %f' % (l_mean, p_mean, m_mean, d_mean))
     with open(os.path.join(result_dir, 'mean_metrics.txt'), 'w') as f:
