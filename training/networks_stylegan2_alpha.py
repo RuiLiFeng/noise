@@ -464,7 +464,7 @@ def G_synthesis_stylegan2(
 
         with tf.variable_scope('resampling'):
             if alpha_pre is not None:
-                alpha = alpha_pre[layer_idx-1]
+                alpha = alpha_pre[layer_idx]
             else:
                 alpha = tf.get_variable('alpha', shape=[], initializer=tf.initializers.constant(0.5))
             sp_att_mask = alpha + (1-alpha) * spatial_att(x, clip_style)
