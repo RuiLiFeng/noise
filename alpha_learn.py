@@ -33,7 +33,7 @@ def read_images(src_dir):
 
 def scale_alpha_exp(alpha, t):
     alpha = alpha.astype(np.float32)
-    return tf.pow(alpha, t) / (tf.pow(alpha, t) + tf.pow(1-alpha, t))
+    return tf.pow(alpha, t) / (tf.pow(alpha, t) + tf.pow((1-alpha).astype(np.float32), t))
 
 
 def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=6600):
