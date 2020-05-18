@@ -47,6 +47,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     G.copy_vars_from(Gs)
     img_in = tf.placeholder(tf.float32)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
+    opt_T = tf.train.AdamOptimizer(learning_rate=0.05, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
     alpha_vars = [var for name, var in G.components.synthesis.vars.items() if name.endswith('alpha')]
     alpha_evals = [alpha.eval() for alpha in alpha_vars]
@@ -82,8 +83,11 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
-        train_op = opt.minimize(loss, var_list=[dlatent, T])
-    reset_opt = tf.variables_initializer(opt.variables())
+        grads = tf.gradients(loss, [dlatent, T])
+        train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
+        train_op2 = opt_T.apply_gradients(zip([grads[1]], T))
+        train_op = tf.group(train_op1, train_op2)
+    reset_opt = tf.variables_initializer(opt.variables(), opt_T.variables())
     reset_dl = tf.variables_initializer([dlatent, T])
 
     tflib.init_uninitialized_vars()
