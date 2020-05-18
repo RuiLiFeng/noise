@@ -58,9 +58,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
                               trainable=True)
     temperature = tf.get_variable('temperature', dtype=tf.float32, initializer=tf.constant(1.0), trainable=True)
-    scale_alpha_op_group = [tf.assign(alpha, scale_alpha_exp(alpha_eval, temperature)) for alpha, alpha_eval in zip(alpha_vars, alpha_evals)]
-    with tf.control_dependencies(scale_alpha_op_group):
-        synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
+    for alpha, alpha_eval in zip(alpha_vars, alpha_evals):
+        alpha=tf.identity(scale_alpha_exp(alpha_eval, temperature))
+    synth_img = G_syn.get_output_for(dlatent, is_training=False, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
 
     with tf.variable_scope('mse_loss'):
