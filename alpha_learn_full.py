@@ -112,11 +112,12 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
             m_loss_list.append(m_loss_)
             dl_loss_ = np.sum(np.square(dl_-dlatent_avg))
             dl_list.append(dl_loss_)
+            ace_ = np.sum(np.square(ac_[0] - alpha_evals[0]))
             if i % 500 == 0:
                 si_list.append(si_)
             if i % 100 == 0:
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, ac %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, ac_, i))
-        print('Ac: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (ac_,
+                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, ace %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, ace_, i))
+        print('Ac: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (ace_,
                                                                loss_list[-1],
                                                                p_loss_list[-1],
                                                                m_loss_list[-1],
