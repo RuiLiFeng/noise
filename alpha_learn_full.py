@@ -48,7 +48,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     img_in = tf.placeholder(tf.float32)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     lr = tf.get_variable('lr', dtype=tf.float32, initializer=tf.constant(0.005))
-    opt_Ts = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
+    opt_Ts = tf.train.AdamOptimizer(learning_rate=0.002, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
     alpha_vars = [var for name, var in G.components.synthesis.vars.items() if name.endswith('alpha')]
     alpha_evals = [alpha.eval() for alpha in alpha_vars]
