@@ -131,7 +131,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
             if i % 500 == 0:
                 si_list.append(si_)
             if i % 100 == 0:
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d, noise %f' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i, noise_pre[0].eval()))
+                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d, noise %f' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i, np.sum(noise_pre[0].eval())))
         # print('T optimization:')
         # for i in range(1000):
         #     loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(
