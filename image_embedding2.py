@@ -37,7 +37,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     tflib.init_tf()
     _, _, G = pretrained_networks.load_networks(network)
     img_in = tf.placeholder(tf.float32)
-    opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
+    step = tf.get_variable('step', tf.float32, tf.constant(0.0))
+    lr = tf.train.exponential_decay(0.01, global_step=step, decay_steps=3500, decay_rate=0.7)
+    opt = tf.train.AdamOptimizer(learning_rate=lr, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
 
     G_kwargs = dnnlib.EasyDict()
@@ -68,7 +70,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         pcep_loss = tf.reduce_mean(tf.square(h1[0] - h1[1])) + tf.reduce_mean(tf.square(h2[0] - h2[1])) + \
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
-    with tf.control_dependencies([loss]):
+    with tf.control_dependencies([loss, tf.assign_add(lr, 1.0)]):
         train_op = opt.minimize(loss, var_list=[dlatent])
     reset_opt = tf.variables_initializer(opt.variables())
     reset_dl = tf.variables_initializer([dlatent])
