@@ -70,7 +70,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         pcep_loss = tf.reduce_mean(tf.square(h1[0] - h1[1])) + tf.reduce_mean(tf.square(h2[0] - h2[1])) + \
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
-    with tf.control_dependencies([loss, tf.assign_add(lr, 1.0)]):
+    with tf.control_dependencies([loss, tf.assign_add(step, 1.0)]):
         train_op = opt.minimize(loss, var_list=[dlatent])
     reset_opt = tf.variables_initializer(opt.variables())
     reset_dl = tf.variables_initializer([dlatent, step])
