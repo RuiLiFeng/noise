@@ -132,16 +132,16 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                 si_list.append(si_)
             if i % 100 == 0:
                 print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
-        print('T optimization:')
-        for i in range(1000):
-            loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(
-                [loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op2],
-                {img_in: img})
-            if i % 500 == 0:
-                si_list.append(si_)
-            if i % 100 == 0:
-                acm_ = np.mean(ac_)
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
+        # print('T optimization:')
+        # for i in range(1000):
+        #     loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(
+        #         [loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op2],
+        #         {img_in: img})
+        #     if i % 500 == 0:
+        #         si_list.append(si_)
+        #     if i % 100 == 0:
+        #         acm_ = np.mean(ac_)
+        #         print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
         print('TsMean: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (acm_,
                                                                loss_list[-1],
                                                                p_loss_list[-1],
