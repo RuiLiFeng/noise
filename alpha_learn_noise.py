@@ -69,7 +69,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                                  dtype=tf.float32, trainable=True,
                                  initializer=tf.constant(rnd.randn(*noise_vars[i].shape.as_list()).astype(np.float32)))
                  for i in range(len(alpha_evals))]
-    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, noise_pre=noise_pre **G_kwargs)
+    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, noise_pre=noise_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
 
     with tf.variable_scope('mse_loss'):
