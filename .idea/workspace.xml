@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="" />
+    <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/alpha_learn.py" beforeDir="false" afterPath="$PROJECT_DIR$/alpha_learn.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alpha_learn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1755">
-              <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+            <state relative-caret-position="270">
+              <caret line="64" column="75" selection-start-line="64" selection-start-column="75" selection-end-line="64" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -122,11 +124,11 @@
         <option value="$PROJECT_DIR$/metrics/metric_base.py" />
         <option value="$PROJECT_DIR$/alpha_manuplat.py" />
         <option value="$PROJECT_DIR$/metrics/linear_separability.py" />
-        <option value="$PROJECT_DIR$/alpha_learn.py" />
         <option value="$PROJECT_DIR$/alpha_learn_full.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_alpha.py" />
         <option value="$PROJECT_DIR$/image_embedding2.py" />
         <option value="$PROJECT_DIR$/alpha_learn_noise.py" />
+        <option value="$PROJECT_DIR$/alpha_learn.py" />
       </list>
     </option>
   </component>
@@ -280,13 +282,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255274000" />
+    <option name="totallyTimeSpent" value="255832000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1513" height="973" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14207275" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14207275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -300,7 +301,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.25029656" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.25029656" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -620,8 +621,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alpha_learn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1755">
-          <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+        <state relative-caret-position="270">
+          <caret line="64" column="75" selection-start-line="64" selection-start-column="75" selection-end-line="64" selection-end-column="75" />
         </state>
       </provider>
     </entry>
