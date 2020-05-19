@@ -47,7 +47,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     G.copy_vars_from(Gs)
     img_in = tf.placeholder(tf.float32)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
-    lr = tf.get_variable('lr', dtype=tf.float32, initializer=tf.constant(0.01))
+    lr = tf.get_variable('lr', dtype=tf.float32, initializer=tf.constant(0.005))
     opt_Ts = tf.train.AdamOptimizer(learning_rate=lr, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
     alpha_vars = [var for name, var in G.components.synthesis.vars.items() if name.endswith('alpha')]
@@ -113,7 +113,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         for i in range(iteration):
             loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op],
                                                              {img_in: img})
-            if i > 4000:
+            if i > 2500:
                 tflib.set_vars({lr: 0.002})
             loss_list.append(loss_)
             p_loss_list.append(p_loss_)
