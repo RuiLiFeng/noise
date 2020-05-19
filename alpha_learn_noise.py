@@ -65,9 +65,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                               trainable=True)
     Ts = [tf.get_variable('T%d'% i, dtype=tf.float32, initializer=tf.constant(1.0)) for i in range(len(alpha_evals))]
     alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval, T in zip(alpha_evals, Ts)]
-    noise_pre = [tf.get_variable('noise_pre%d' % i,
-                                 dtype=tf.float32, trainable=True,
-                                 initializer=tf.constant(rnd.randn(*noise_vars[i].shape.as_list()).astype(np.float32)))
+    noise_pre = [noise_vars[i] + tf.get_variable('noise_pre%d' % i,
+                                                 dtype=tf.float32, trainable=False,
+                                                 initializer=tf.random_normal_initializer(noise_vars[i].shape.as_list(), stddev=0.02))
                  for i in range(len(alpha_evals))]
     synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, noise_pre=noise_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
@@ -92,10 +92,10 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         # train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
         # train_op2 = opt_Ts.apply_gradients(zip(grads[1:], Ts))
         # train_op = tf.group(train_op1, train_op2)
-        train_op1 = opt.minimize(loss, var_list=[dlatent] + noise_pre)
+        train_op1 = opt.minimize(loss, var_list=[dlatent])
         train_op2 = opt_Ts.minimize(loss, var_list=Ts)
     reset_opt = tf.variables_initializer(opt.variables()+opt_Ts.variables())
-    reset_dl = tf.variables_initializer([dlatent]+Ts+noise_pre)
+    reset_dl = tf.variables_initializer([dlatent]+Ts)
 
     tflib.init_uninitialized_vars()
     # rnd = np.random.RandomState(seed)
@@ -131,7 +131,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
             if i % 500 == 0:
                 si_list.append(si_)
             if i % 100 == 0:
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
+                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d, noise %f' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i, noise_pre[0].eval()))
         # print('T optimization:')
         # for i in range(1000):
         #     loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(

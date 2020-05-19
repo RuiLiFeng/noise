@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2590d6c7-e1a0-48fb-85ae-f50d6264a793" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_learn_noise.py" beforeDir="false" afterPath="$PROJECT_DIR$/alpha_learn_noise.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/image_embedding2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -39,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alpha_learn_noise.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-133">
-              <caret line="71" column="106" selection-start-line="71" selection-start-column="106" selection-end-line="71" selection-end-column="106" />
+            <state relative-caret-position="304">
+              <caret line="70" column="50" lean-forward="true" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -156,8 +157,8 @@
         <option value="$PROJECT_DIR$/alpha_learn.py" />
         <option value="$PROJECT_DIR$/alpha_learn_full.py" />
         <option value="$PROJECT_DIR$/training/networks_stylegan2_alpha.py" />
-        <option value="$PROJECT_DIR$/alpha_learn_noise.py" />
         <option value="$PROJECT_DIR$/image_embedding2.py" />
+        <option value="$PROJECT_DIR$/alpha_learn_noise.py" />
       </list>
     </option>
   </component>
@@ -328,12 +329,12 @@
       <workItem from="1589442498610" duration="1973000" />
       <workItem from="1589538909148" duration="1652000" />
       <workItem from="1589621474500" duration="28296000" />
-      <workItem from="1589846412975" duration="14437000" />
+      <workItem from="1589846412975" duration="15855000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253143000" />
+    <option name="totallyTimeSpent" value="254561000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
@@ -353,7 +354,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3385269" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.18413597" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -746,17 +747,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alpha_learn_noise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133">
-          <caret line="71" column="106" selection-start-line="71" selection-start-column="106" selection-end-line="71" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/image_embedding2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpha_learn_noise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="70" column="50" lean-forward="true" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
         </state>
       </provider>
     </entry>
