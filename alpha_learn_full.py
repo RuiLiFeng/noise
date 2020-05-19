@@ -113,7 +113,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         for i in range(iteration):
             loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op],
                                                              {img_in: img})
-            if i > 2500:
+            if i > 3500:
                 tflib.set_vars({lr: 0.002})
             loss_list.append(loss_)
             p_loss_list.append(p_loss_)
