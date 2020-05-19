@@ -63,7 +63,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     dlatent_avg = dlatent_avg.repeat(12, 1)
     dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
                               trainable=True)
-    Ts = [tf.get_variable('T%d'% i, dtype=tf.float32, initializer=tf.constant(0.95)) for i in range(len(alpha_evals))]
+    Ts = [tf.get_variable('T%d'% i, dtype=tf.float32, initializer=tf.constant(1.0)) for i in range(len(alpha_evals))]
     alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval, T in zip(alpha_evals, Ts)]
     synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
