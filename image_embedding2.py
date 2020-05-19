@@ -39,7 +39,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     img_in = tf.placeholder(tf.float32)
     step = tf.get_variable('step', dtype=tf.float32, initializer=tf.constant(0.0))
     lr = tf.train.exponential_decay(0.01, global_step=step, decay_steps=3500, decay_rate=0.5)
-    opt = tf.train.AdamOptimizer(learning_rate=lr, beta1=0.9, beta2=0.999, epsilon=1e-8)
+    opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
 
     G_kwargs = dnnlib.EasyDict()
