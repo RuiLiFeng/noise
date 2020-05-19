@@ -42,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alpha_learn_noise.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="133" column="173" selection-start-line="133" selection-start-column="173" selection-end-line="133" selection-end-column="173" />
+            <state relative-caret-position="190">
+              <caret line="69" column="89" selection-start-line="69" selection-start-column="89" selection-end-line="69" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -328,12 +328,12 @@
       <workItem from="1589442498610" duration="1973000" />
       <workItem from="1589538909148" duration="1652000" />
       <workItem from="1589621474500" duration="28296000" />
-      <workItem from="1589846412975" duration="16149000" />
+      <workItem from="1589846412975" duration="16418000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254855000" />
+    <option name="totallyTimeSpent" value="255124000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
@@ -754,8 +754,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alpha_learn_noise.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="133" column="173" selection-start-line="133" selection-start-column="173" selection-end-line="133" selection-end-column="173" />
+        <state relative-caret-position="190">
+          <caret line="69" column="89" selection-start-line="69" selection-start-column="89" selection-end-line="69" selection-end-column="89" />
         </state>
       </provider>
     </entry>
