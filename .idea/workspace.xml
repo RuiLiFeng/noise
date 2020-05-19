@@ -34,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alpha_learn_full.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="49" column="77" selection-start-line="49" selection-start-column="77" selection-end-line="49" selection-end-column="77" />
+            <state relative-caret-position="341">
+              <caret line="115" column="23" selection-start-line="115" selection-start-column="23" selection-end-line="115" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -170,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1880" />
     <option name="y" value="75" />
     <option name="width" value="1938" />
@@ -337,12 +337,12 @@
       <workItem from="1589442498610" duration="1973000" />
       <workItem from="1589538909148" duration="1652000" />
       <workItem from="1589621474500" duration="28296000" />
-      <workItem from="1589846412975" duration="1836000" />
+      <workItem from="1589846412975" duration="2250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240542000" />
+    <option name="totallyTimeSpent" value="240956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="-7" width="1550" height="838" extended-state="6" />
@@ -770,8 +770,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alpha_learn_full.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="49" column="77" selection-start-line="49" selection-start-column="77" selection-end-line="49" selection-end-column="77" />
+        <state relative-caret-position="341">
+          <caret line="115" column="23" selection-start-line="115" selection-start-column="23" selection-end-line="115" selection-end-column="23" />
         </state>
       </provider>
     </entry>
