@@ -65,9 +65,9 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                               trainable=True)
     Ts = [tf.get_variable('T%d'% i, dtype=tf.float32, initializer=tf.constant(1.0)) for i in range(len(alpha_evals))]
     alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval, T in zip(alpha_evals, Ts)]
-    noise_pre = [noise_vars[i] + tf.get_variable('noise_pre%d' % i,
-                                                 dtype=tf.float32, shape=noise_vars[i].shape.as_list(), trainable=False,
-                                                 initializer=tf.random_normal_initializer(stddev=0.02))
+    noise_pre = [noise_vars[i] +
+                 tf.random.normal(name='noise_pre%d' % i,
+                                  dtype=tf.float32, shape=noise_vars[i].shape.as_list(), trainable=False, stddev=0.02)
                  for i in range(len(alpha_evals))]
     synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, noise_pre=noise_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
@@ -131,7 +131,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
             if i % 500 == 0:
                 si_list.append(si_)
             if i % 100 == 0:
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d, noise %f' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i, np.sum(noise_pre[0].eval())))
+                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d, noise %f' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i, np.mean(noise_pre[0].eval())))
         # print('T optimization:')
         # for i in range(1000):
         #     loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(
