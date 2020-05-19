@@ -431,6 +431,7 @@ def G_synthesis_stylegan2(
     fused_modconv       = True,         # Implement modulated_conv2d_layer() as a single fused op?
     clip_style          = 'ffhq',
     alpha_pre           = None,
+    noise_pre           = None,
     **_kwargs):                         # Ignore unrecognized keyword args.
 
     resolution_log2 = int(np.log2(resolution))
@@ -455,10 +456,13 @@ def G_synthesis_stylegan2(
     # Single convolution layer with all the bells and whistles.
     def layer(x, layer_idx, fmaps, kernel, up=False):
         x = modulated_conv2d_layer(x, dlatents_in[:, layer_idx], fmaps=fmaps, kernel=kernel, up=up, resample_kernel=resample_kernel, fused_modconv=fused_modconv)
-        if randomize_noise:
-            noise = tf.random_normal([tf.shape(x)[0], 1, x.shape[2], x.shape[3]], dtype=x.dtype)
+        if noise_pre is not None:
+            noise = tf.cast(noise_pre[layer_idx], x.dtype)
         else:
-            noise = tf.cast(noise_inputs[layer_idx], x.dtype)
+            if randomize_noise:
+                noise = tf.random_normal([tf.shape(x)[0], 1, x.shape[2], x.shape[3]], dtype=x.dtype)
+            else:
+                noise = tf.cast(noise_inputs[layer_idx], x.dtype)
         noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
         noise = noise * tf.cast(noise_strength, x.dtype)
 
