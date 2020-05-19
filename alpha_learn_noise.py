@@ -67,7 +67,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval, T in zip(alpha_evals, Ts)]
     noise_pre = [tf.get_variable('noise_pre%d' % i,
                                  dtype=tf.float32, trainable=True,
-                                 initializer=tf.constant(rnd.randn(*noise_vars[i].shape.as_list()), dtype=tf.float32))
+                                 initializer=tf.constant(rnd.randn(*noise_vars[i].shape.as_list()).astype(np.float32)))
                  for i in range(len(alpha_evals))]
     synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, noise_pre=noise_pre **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
