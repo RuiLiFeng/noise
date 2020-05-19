@@ -65,7 +65,11 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                               trainable=True)
     Ts = [tf.get_variable('T%d'% i, dtype=tf.float32, initializer=tf.constant(1.0)) for i in range(len(alpha_evals))]
     alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval, T in zip(alpha_evals, Ts)]
-    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, **G_kwargs)
+    noise_pre = [tf.get_variable('noise_pre%d' % i,
+                                 dtype=tf.float32, trainable=True,
+                                 initializer=tf.constant(rnd.randn(*noise_vars[i].shape.as_list())))
+                 for i in range(len(alpha_evals))]
+    synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, noise_pre=noise_pre **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
 
     with tf.variable_scope('mse_loss'):
@@ -88,10 +92,10 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         # train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
         # train_op2 = opt_Ts.apply_gradients(zip(grads[1:], Ts))
         # train_op = tf.group(train_op1, train_op2)
-        train_op1 = opt.minimize(loss, var_list=[dlatent] + noise_vars)
+        train_op1 = opt.minimize(loss, var_list=[dlatent] + noise_pre)
         train_op2 = opt_Ts.minimize(loss, var_list=Ts)
     reset_opt = tf.variables_initializer(opt.variables()+opt_Ts.variables())
-    reset_dl = tf.variables_initializer([dlatent]+Ts)
+    reset_dl = tf.variables_initializer([dlatent]+Ts+noise_pre)
 
     tflib.init_uninitialized_vars()
     # rnd = np.random.RandomState(seed)
