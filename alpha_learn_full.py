@@ -48,7 +48,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     img_in = tf.placeholder(tf.float32)
     opt = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     lr = tf.get_variable('lr', dtype=tf.float32, initializer=tf.constant(0.005))
-    opt_Ts = tf.train.AdamOptimizer(learning_rate=lr, beta1=0.9, beta2=0.999, epsilon=1e-8)
+    opt_Ts = tf.train.AdamOptimizer(learning_rate=0.01, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
     alpha_vars = [var for name, var in G.components.synthesis.vars.items() if name.endswith('alpha')]
     alpha_evals = [alpha.eval() for alpha in alpha_vars]
@@ -84,10 +84,12 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
-        grads = tf.gradients(loss, [dlatent]+Ts)
-        train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
-        train_op2 = opt_Ts.apply_gradients(zip(grads[1:], Ts))
-        train_op = tf.group(train_op1, train_op2)
+        # grads = tf.gradients(loss, [dlatent]+Ts)
+        # train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
+        # train_op2 = opt_Ts.apply_gradients(zip(grads[1:], Ts))
+        # train_op = tf.group(train_op1, train_op2)
+        train_op1 = opt.minimize(loss, var_list=[dlatent])
+        train_op2 = opt_Ts.minimize(loss, var_list=Ts)
     reset_opt = tf.variables_initializer(opt.variables()+opt_Ts.variables())
     reset_dl = tf.variables_initializer([dlatent]+Ts)
 
@@ -112,8 +114,10 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         tflib.run([reset_opt, reset_dl])
         tflib.set_vars({lr: 0.005})
         for i in range(iteration):
-            loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op],
+            loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op1],
                                                              {img_in: img})
+            for _ in range(2):
+                tflib.run([train_op2], {img_in: img})
             if i > 3500:
                 tflib.set_vars({lr: 0.002})
             loss_list.append(loss_)
