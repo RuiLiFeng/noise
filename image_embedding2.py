@@ -37,7 +37,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     tflib.init_tf()
     _, _, G = pretrained_networks.load_networks(network)
     img_in = tf.placeholder(tf.float32)
-    step = tf.get_variable('step', tf.float32, tf.constant(0.0))
+    step = tf.get_variable('step', dtype=tf.float32, initializer=tf.constant(0.0))
     lr = tf.train.exponential_decay(0.01, global_step=step, decay_steps=3500, decay_rate=0.7)
     opt = tf.train.AdamOptimizer(learning_rate=lr, beta1=0.9, beta2=0.999, epsilon=1e-8)
     noise_vars = [var for name, var in G.components.synthesis.vars.items() if name.startswith('noise')]
@@ -73,7 +73,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     with tf.control_dependencies([loss, tf.assign_add(lr, 1.0)]):
         train_op = opt.minimize(loss, var_list=[dlatent])
     reset_opt = tf.variables_initializer(opt.variables())
-    reset_dl = tf.variables_initializer([dlatent])
+    reset_dl = tf.variables_initializer([dlatent, step])
 
     tflib.init_uninitialized_vars()
     # rnd = np.random.RandomState(seed)
@@ -91,6 +91,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         dl_list = []
         si_list = []
         tflib.run([reset_opt, reset_dl])
+        print(lr)
         for i in range(iteration):
             loss_, p_loss_, m_loss_, dl_, si_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, train_op],
                                                              {img_in: img})
