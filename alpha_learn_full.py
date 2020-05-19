@@ -100,6 +100,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     metrics_m = []
     metrics_d = []
     ac_list = []
+    print(tf.get_default_graph().seed)
     for img in imgs:
         img = np.expand_dims(img, 0)
         loss_list = []
