@@ -84,12 +84,12 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
-        # grads = tf.gradients(loss, [dlatent]+Ts)
-        # train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
-        # train_op2 = opt_Ts.apply_gradients(zip(grads[1:], Ts))
-        # train_op = tf.group(train_op1, train_op2)
-        train_op1 = opt.minimize(loss, var_list=[dlatent])
-        train_op2 = opt_Ts.minimize(loss, var_list=Ts)
+        grads = tf.gradients(loss, [dlatent]+Ts)
+        train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
+        train_op2 = opt_Ts.apply_gradients(zip(grads[1:], Ts))
+        train_op = tf.group(train_op1, train_op2)
+        # train_op1 = opt.minimize(loss, var_list=[dlatent])
+        # train_op2 = opt_Ts.minimize(loss, var_list=Ts)
     reset_opt = tf.variables_initializer(opt.variables()+opt_Ts.variables())
     reset_dl = tf.variables_initializer([dlatent]+Ts)
 
@@ -102,7 +102,6 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     metrics_m = []
     metrics_d = []
     ac_list = []
-    tf.set_random_seed(59119271)
     for img in imgs:
         img = np.expand_dims(img, 0)
         loss_list = []
@@ -114,7 +113,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
         tflib.run([reset_opt, reset_dl])
         tflib.set_vars({lr: 0.005})
         for i in range(iteration):
-            loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op1],
+            loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run([loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op],
                                                              {img_in: img})
             if i > 3500:
                 tflib.set_vars({lr: 0.002})
@@ -128,16 +127,16 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                 si_list.append(si_)
             if i % 100 == 0:
                 print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
-        print('T optimization:')
-        for i in range(1000):
-            loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(
-                [loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op2],
-                {img_in: img})
-            if i % 500 == 0:
-                si_list.append(si_)
-            if i % 100 == 0:
-                acm_ = np.mean(ac_)
-                print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
+        # print('T optimization:')
+        # for i in range(1000):
+        #     loss_, p_loss_, m_loss_, dl_, si_, ac_, _ = tflib.run(
+        #         [loss, pcep_loss, mse_loss, dlatent, synth_img, Ts, train_op2],
+        #         {img_in: img})
+        #     if i % 500 == 0:
+        #         si_list.append(si_)
+        #     if i % 100 == 0:
+        #         acm_ = np.mean(ac_)
+        #         print('idx %d, Loss %f, mse %f, ppl %f, dl %f, TsMean %f, step %d' % (idx, loss_, m_loss_, p_loss_, dl_loss_, acm_, i))
         print('TsMean: %f, loss: %f, ppl: %f, mse: %f, d: %f' % (acm_,
                                                                loss_list[-1],
                                                                p_loss_list[-1],
