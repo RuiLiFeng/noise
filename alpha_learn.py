@@ -62,7 +62,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
     dlatent_avg = dlatent_avg.repeat(12, 1)
     dlatent = tf.get_variable('dlatent', dtype=tf.float32, initializer=tf.constant(dlatent_avg),
                               trainable=True)
-    T = tf.get_variable('T', dtype=tf.float32, initializer=tf.constant(1.0))
+    T = tf.get_variable('T', dtype=tf.float32, initializer=tf.constant(0.95))
     alpha_pre = [scale_alpha_exp(alpha_eval, T) for alpha_eval in alpha_evals]
     synth_img = G_syn.get_output_for(dlatent, is_training=False, alpha_pre=alpha_pre, **G_kwargs)
     # synth_img = (synth_img + 1.0) / 2.0
@@ -83,7 +83,7 @@ def embed(batch_size, resolution, imgs, network, iteration, result_dir, seed=660
                     tf.reduce_mean(tf.square(h3[0] - h3[1])) + tf.reduce_mean(tf.square(h4[0] - h4[1]))
     loss = 0.5 * mse_loss + 0.5 * pcep_loss
     with tf.control_dependencies([loss]):
-        grads = tf.gradients(loss, [dlatent, T])
+        grads = tf.gradients(mse_loss, [dlatent, T])
         train_op1 = opt.apply_gradients(zip([grads[0]], [dlatent]))
         train_op2 = opt_T.apply_gradients(zip([grads[1]], [T]))
         train_op = tf.group(train_op1, train_op2)
