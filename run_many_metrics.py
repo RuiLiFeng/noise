@@ -80,7 +80,7 @@ def main():
     sc.local.do_not_copy_source_files = True
     sc.run_dir_root = kwargs.pop('result_dir')
     sc.run_desc = 'run-metrics'
-    dnnlib.submit_run(sc, 'run_metrics.run', **kwargs)
+    dnnlib.submit_run(sc, 'run_many_metrics.run', **kwargs)
 
 #----------------------------------------------------------------------------
 
