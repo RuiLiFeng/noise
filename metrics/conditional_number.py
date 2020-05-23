@@ -64,7 +64,7 @@ class CondN(metric_base.MetricBase):
                     c = int(images.shape[2] // 8)
                     images = images[:, :, c * 3: c * 7, c * 2: c * 6]
 
-                def norm(v): return tf.sqrt(tf.reduce_sum(tf.square(v)))
+                def norm(v): return tf.sqrt(tf.reduce_sum(tf.square(v), axis=range(1, len(v.shape))))
 
                 cond = (norm(images[:self.minibatch_per_gpu] - images[self.minibatch_per_gpu:]) /
                         norm(images[:self.minibatch_per_gpu])) / (norm(epi) / norm(x))
@@ -75,10 +75,11 @@ class CondN(metric_base.MetricBase):
         for begin in range(0, self.num_samples, minibatch_size):
             self._report_progress(begin, self.num_samples)
             all_cond += tflib.run(cond_expr)
-        # all_cond = np.concatenate(all_cond, axis=0)
-        if self.report_type == 'mean':
-            self._report_result(np.mean(all_cond))
-        else:
-            self._report_result(np.max(all_cond))
+        all_cond = np.concatenate(all_cond, axis=0)
+        all_cond.sort()
+        # if self.report_type == 'mean':
+        self._report_result([np.mean(all_cond), np.max(all_cond), np.mean(all_cond[-1000:])])
+        # else:
+        #     self._report_result(np.max(all_cond))
 
 #----------------------------------------------------------------------------
