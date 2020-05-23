@@ -44,7 +44,7 @@ class CondN(metric_base.MetricBase):
                               name.startswith('noise')]
                 latents = tf.random_normal([self.minibatch_per_gpu] + Gs_clone.input_shape[1:])
                 if self.space == 'w':
-                    dlat = Gs_clone.components.mapping.get_output_for(latents, **Gs_kwargs)
+                    dlat = Gs_clone.components.mapping.get_output_for(latents, None, **Gs_kwargs)
                     dlat = tf.cast(dlat, tf.float32)
                     epi = tf.random_normal(dlat.shape, stddev=self.epsilon)
                     dlat_in = tf.concat([dlat, dlat + epi], axis=0)
@@ -52,7 +52,7 @@ class CondN(metric_base.MetricBase):
                 else: # space == 'z
                     epi = tf.random_normal(dlat.shape)
                     dlat = tf.concat([latents, latents + epi], axis=0)
-                    dlat_in = Gs_clone.components.mapping.get_output_for(latents, **Gs_kwargs)
+                    dlat_in = Gs_clone.components.mapping.get_output_for(latents, None, **Gs_kwargs)
                     x = latents
                 with tf.control_dependencies(
                         [var.initializer for var in noise_vars]):  # use same noise inputs for the entire minibatch
