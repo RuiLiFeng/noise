@@ -64,7 +64,7 @@ class CondN(metric_base.MetricBase):
                     c = int(images.shape[2] // 8)
                     images = images[:, :, c * 3: c * 7, c * 2: c * 6]
 
-                def norm(v): return tf.sqrt(tf.reduce_sum(tf.square(v), axis=range(1, len(v.shape))))
+                def norm(v): return tf.sqrt(tf.reduce_sum(tf.square(v), axis=list(range(1, len(v.shape)))))
 
                 cond = (norm(images[:self.minibatch_per_gpu] - images[self.minibatch_per_gpu:]) /
                         norm(images[:self.minibatch_per_gpu])) / (norm(epi) / norm(x))
