@@ -75,7 +75,7 @@ class CondN(metric_base.MetricBase):
         for begin in range(0, self.num_samples, minibatch_size):
             self._report_progress(begin, self.num_samples)
             all_cond += tflib.run(cond_expr)
-        all_cond = np.concatenate(all_cond, axis=0)
+        # all_cond = np.concatenate(all_cond, axis=0)
         if self.report_type == 'mean':
             self._report_result(np.mean(all_cond))
         else:
