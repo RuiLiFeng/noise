@@ -11,6 +11,7 @@ import numpy as np
 import scipy
 import tensorflow as tf
 import dnnlib.tflib as tflib
+import dnnlib
 
 from metrics import metric_base
 from training import misc
@@ -78,7 +79,7 @@ class CondN(metric_base.MetricBase):
         all_cond = np.concatenate(all_cond, axis=0)
         all_cond.sort()
         # if self.report_type == 'mean':
-        self._report_result([np.mean(all_cond), np.max(all_cond), np.mean(all_cond[-1000:])])
+        self._report_result((np.mean(all_cond), np.max(all_cond), np.mean(all_cond[-1000:])), fmt='%-10.4f    %-10.4f    %-10.4f')
         # else:
         #     self._report_result(np.max(all_cond))
 
