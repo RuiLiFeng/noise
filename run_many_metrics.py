@@ -29,6 +29,7 @@ def run(network_pkl, metrics, dataset, data_dir, mirror_augment):
         num_gpus = dnnlib.submit_config.num_gpus
         metric_group = metric_base.MetricGroup([metric_defaults[metric] for metric in metrics])
         metric_group.run(net_pkl, data_dir=data_dir, dataset_args=dataset_args, mirror_augment=mirror_augment, num_gpus=num_gpus)
+        metric_group.update_autosummaries()
 
 #----------------------------------------------------------------------------
 
