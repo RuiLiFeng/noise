@@ -51,9 +51,9 @@ class CondN(metric_base.MetricBase):
                     dlat_in = tf.concat([dlat, dlat + epi], axis=0)
                     x = dlat
                 else: # space == 'z
-                    epi = tf.random_normal(dlat.shape)
+                    epi = tf.random_normal(latents.shape, stddev=self.epsilon)
                     dlat = tf.concat([latents, latents + epi], axis=0)
-                    dlat_in = Gs_clone.components.mapping.get_output_for(latents, None, **Gs_kwargs)
+                    dlat_in = Gs_clone.components.mapping.get_output_for(dlat, None, **Gs_kwargs)
                     x = latents
                 with tf.control_dependencies(
                         [var.initializer for var in noise_vars]):  # use same noise inputs for the entire minibatch
