@@ -20,7 +20,7 @@ def standard_dev(imgs):
     imgs = np.concatenate(imgs, 0)
     mean = np.mean(imgs, axis=0, keepdims=True)
     std = np.mean(np.square(imgs - mean), axis=0, keepdims=True)
-    std = np.sum(std, axis=[1, 2, 3])
+    std = np.sum(std, axis=1)
     return mean, std
 
 
