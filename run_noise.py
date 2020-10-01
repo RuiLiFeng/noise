@@ -36,7 +36,7 @@ def standard_dev(imgs):
     return mean, std
 
 
-def generate_images(network_pkl, seeds, truncation_psi):
+def generate_images(network_pkl, seed_z, seeds, truncation_psi):
     print('Loading networks from "%s"...' % network_pkl)
     _G, _D, Gs = pretrained_networks.load_networks(network_pkl)
     noise_vars = [var for name, var in Gs.components.synthesis.vars.items() if name.startswith('noise')]
@@ -47,7 +47,7 @@ def generate_images(network_pkl, seeds, truncation_psi):
     if truncation_psi is not None:
         Gs_kwargs.truncation_psi = truncation_psi
 
-    rnd = np.random.RandomState(6609)
+    rnd = np.random.RandomState(seed_z)
     z = rnd.randn(1, *Gs.input_shape[1:])
     img = []
     for seed_idx, seed in enumerate(seeds):
@@ -163,6 +163,8 @@ Run 'python %(prog)s <subcommand> --help' for subcommand help.''',
 
     parser_generate_images = subparsers.add_parser('generate-images', help='Generate images')
     parser_generate_images.add_argument('--network', help='Network pickle filename', dest='network_pkl', required=True)
+    parser_generate_images.add_argument('--seed-z', type=int, help='List of random seeds', required=True)
+
     parser_generate_images.add_argument('--seeds', type=_parse_num_range, help='List of random seeds', required=True)
     parser_generate_images.add_argument('--truncation-psi', type=float, help='Truncation psi (default: %(default)s)', default=0.5)
     parser_generate_images.add_argument('--result-dir', help='Root directory for run results (default: %(default)s)', default='results', metavar='DIR')
