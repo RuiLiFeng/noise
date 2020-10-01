@@ -15,6 +15,16 @@ import sys
 import pretrained_networks
 
 #----------------------------------------------------------------------------
+def adjust_range(x):
+    if x.ndim == 2:
+        x = x - np.mean(x)
+        x_max = np.max(np.abs(x))
+        x = x / (x_max + 1e-8)
+    elif x.ndim == 4:
+        x = x - np.mean(x, axis=(2, 3), keepdims=True)
+        x_max = np.max(np.abs(x), axis=(2, 3), keepdims=True)
+        x = x / (x_max + 1e-8)
+    return x
 
 def standard_dev(imgs):
     imgs = np.concatenate(imgs, 0)
@@ -22,6 +32,9 @@ def standard_dev(imgs):
     mean = np.mean(imgs, axis=0, keepdims=True)
     std = np.mean(np.square(imgs - mean), axis=0, keepdims=True)
     std = np.sum(std, axis=3)
+    std[0] = (adjust_range(std[0]) + 1.0) * 255 / 2
+    std = np.floor(std)
+    mean = np.floor(mean)
     mean.astype(np.uint8)
     std.astype(np.uint8)
     return mean, std
