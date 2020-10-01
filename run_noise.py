@@ -32,7 +32,7 @@ def standard_dev(imgs):
     imgs.astype(np.float)
     mean = np.mean(imgs, axis=0, keepdims=True)
     std = np.mean(np.square(imgs - mean), axis=0, keepdims=True)
-    std = np.sum(std, axis=3)
+    std = np.sum(std, axis=1)
     return mean, std
 
 
@@ -63,7 +63,6 @@ def generate_images(network_pkl, seeds, truncation_psi):
     print(std)
     print(mean)
     std[0] = adjust_range(std[0])
-    mean = adjust_range(mean)
     misc.save_image_grid(std,
                          dnnlib.make_run_dir_path('std.png'), drange=[-1, 1])
     misc.save_image_grid(mean,
