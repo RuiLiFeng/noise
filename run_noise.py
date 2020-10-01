@@ -172,7 +172,7 @@ Run 'python %(prog)s <subcommand> --help' for subcommand help.''',
     sc.run_desc = subcmd
 
     func_name_map = {
-        'generate-images': 'run_generator.generate_images',
+        'generate-images': 'run_noise.generate_images',
         'style-mixing-example': 'run_generator.style_mixing_example'
     }
     dnnlib.submit_run(sc, func_name_map[subcmd], **kwargs)
