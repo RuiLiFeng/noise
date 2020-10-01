@@ -20,6 +20,7 @@ def standard_dev(imgs):
     imgs = np.concatenate(imgs, 0)
     mean = np.mean(imgs, axis=0, keepdims=True)
     std = np.mean(np.square(imgs - mean), axis=0, keepdims=True)
+    std = np.sum(std, axis=[1, 2, 3])
     return mean, std
 
 
@@ -34,7 +35,7 @@ def generate_images(network_pkl, seeds, truncation_psi):
     if truncation_psi is not None:
         Gs_kwargs.truncation_psi = truncation_psi
 
-    rnd = np.random.RandomState(6602)
+    rnd = np.random.RandomState(6609)
     z = rnd.randn(1, *Gs.input_shape[1:])
     img = []
     for seed_idx, seed in enumerate(seeds):
