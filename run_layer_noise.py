@@ -50,7 +50,8 @@ def generate_images(network_pkl, seed_z, seeds, truncation_psi):
     rnd = np.random.RandomState(seed_z)
     z = rnd.randn(1, *Gs.input_shape[1:])
     img = []
-    for layer_idx in range(0, len(noise_vars), 2):
+    idx = [0, 2, 4, 6, 8, 10, 11]
+    for layer_idx in idx:
         print('Generating image for %d (%d/%d) ...' % (layer_idx, layer_idx, len(noise_vars)))
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars})  # [height, width]
         zero_vars = noise_vars[layer_idx:]
@@ -63,7 +64,7 @@ def generate_images(network_pkl, seed_z, seeds, truncation_psi):
         misc.convert_to_pil_image(images[0], drange=[-1, 1]).save(dnnlib.make_run_dir_path('seed%04d.png' % layer_idx))
     img = np.concatenate(img, 0)
     misc.save_image_grid(img,
-                         dnnlib.make_run_dir_path('img.png'), drange=[-1, 1])
+                         dnnlib.make_run_dir_path('img.png'), drange=[-1, 1], grid_size=[1, 7])
 
 
 #----------------------------------------------------------------------------
