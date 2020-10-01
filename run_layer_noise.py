@@ -56,7 +56,7 @@ def generate_images(network_pkl, seed_z, seeds, truncation_psi):
         zero_vars = noise_vars[layer_idx:]
 
         if len(zero_vars) != 0:
-            tflib.set_vars({var: np.zeros(*var.shape.as_list(), dtype=np.float32) for var in zero_vars})  # [height, width]
+            tflib.set_vars({var: np.zeros(var.shape.as_list(), dtype=np.float32) for var in zero_vars})  # [height, width]
         images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
         img.append(images)
         # PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
