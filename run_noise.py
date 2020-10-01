@@ -63,7 +63,7 @@ def generate_images(network_pkl, seeds, truncation_psi):
     print(std)
     print(mean)
     std[0] = adjust_range(std[0])
-    misc.save_image_grid(std,
+    misc.save_image_grid(-std,
                          dnnlib.make_run_dir_path('std.png'), drange=[-1, 1])
     misc.save_image_grid(mean,
                          dnnlib.make_run_dir_path('mean.png'), drange=[-1, 1])
