@@ -11,6 +11,7 @@ import dnnlib
 import dnnlib.tflib as tflib
 import re
 import sys
+from training import misc
 
 import pretrained_networks
 
@@ -32,11 +33,6 @@ def standard_dev(imgs):
     mean = np.mean(imgs, axis=0, keepdims=True)
     std = np.mean(np.square(imgs - mean), axis=0, keepdims=True)
     std = np.sum(std, axis=3)
-    std[0] = (adjust_range(std[0]) + 1.0) * 255 / 2
-    std = np.floor(std)
-    mean = np.floor(mean)
-    mean.astype(np.uint8)
-    std.astype(np.uint8)
     return mean, std
 
 
@@ -46,7 +42,7 @@ def generate_images(network_pkl, seeds, truncation_psi):
     noise_vars = [var for name, var in Gs.components.synthesis.vars.items() if name.startswith('noise')]
 
     Gs_kwargs = dnnlib.EasyDict()
-    Gs_kwargs.output_transform = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
+    # Gs_kwargs.output_transform = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
     Gs_kwargs.randomize_noise = False
     if truncation_psi is not None:
         Gs_kwargs.truncation_psi = truncation_psi
@@ -61,12 +57,17 @@ def generate_images(network_pkl, seeds, truncation_psi):
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars}) # [height, width]
         images = Gs.run(z, None, **Gs_kwargs) # [minibatch, height, width, channel]
         img.append(images)
-        PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
+        # PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
+        misc.convert_to_pil_image(images[0], drange=[-1, 1]).save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
     mean, std = standard_dev(img)
     print(std)
     print(mean)
-    PIL.Image.fromarray(std[0], 'L').save(dnnlib.make_run_dir_path('std.png'))
-    PIL.Image.fromarray(mean[0], 'RGB').save(dnnlib.make_run_dir_path('mean.png'))
+    std[0] = adjust_range(std[0])
+    mean = adjust_range(mean)
+    misc.save_image_grid(std,
+                         dnnlib.make_run_dir_path('std.png'), drange=[-1, 1])
+    misc.save_image_grid(mean,
+                         dnnlib.make_run_dir_path('mean.png'), drange=[-1, 1])
 
 
 #----------------------------------------------------------------------------
