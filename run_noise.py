@@ -50,7 +50,8 @@ def generate_images(network_pkl, seeds, truncation_psi):
         img.append(images)
         PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
     mean, std = standard_dev(img)
-    print(std.shape)
+    print(std)
+    print(mean)
     PIL.Image.fromarray(std[0], 'L').save(dnnlib.make_run_dir_path('std.png'))
     PIL.Image.fromarray(mean[0], 'RGB').save(dnnlib.make_run_dir_path('mean.png'))
 
